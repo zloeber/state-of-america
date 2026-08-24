@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-23",
+  "note": "AMERICAN HEALTH INDEX — EXPLORATORY COMPOSITE. This is an analytical visualization, NOT an objective measurement of national worth (root Section 13). Method: 8 dimensions; each scored 0-100 per decade by min-max normalization of underlying indicators over their 1970-2024 range; equal weighting unless stated. Underlying indicators listed per dimension and disclosed in the explorer with adjustable weights. Scores are heuristic analyst judgments grounded in the indicator datasets — treat as directional, not precise.",
+  "dimensions": {
+    "economic": { "indicators": ["real GDP growth avg", "unemployment avg", "CPI avg", "productivity growth"], "scores": { "1970s": 35, "1980s": 45, "1990s": 65, "2000s": 55, "2010s": 60, "2020s": 50 } },
+    "wealth_distribution": { "indicators": ["top-1% wealth share (inverse)", "Gini (inverse)", "middle-class share", "union density"], "scores": { "1970s": 70, "1980s": 55, "1990s": 40, "2000s": 35, "2010s": 25, "2020s": 25 } },
+    "fiscal_health": { "indicators": ["debt held by public / GDP (inverse)", "deficit / GDP (inverse)", "net interest / GDP (inverse)"], "scores": { "1970s": 70, "1980s": 50, "1990s": 70, "2000s": 55, "2010s": 50, "2020s": 25 } },
+    "population_health": { "indicators": ["life expectancy", "infant mortality (inverse)", "overdose deaths (inverse)", "obesity (inverse)"], "scores": { "1970s": 45, "1980s": 55, "1990s": 60, "2000s": 70, "2010s": 60, "2020s": 55 } },
+    "freedom": { "indicators": ["Freedom House score", "V-Dem LDI", "EIU index"], "scores": { "1970s": 80, "1980s": 82, "1990s": 80, "2000s": 80, "2010s": 65, "2020s": 35 } },
+    "social_stability": { "indicators": ["homicide rate (inverse)", "poverty rate (inverse)", "homelessness (inverse)", "incarceration (inverse)"], "scores": { "1970s": 50, "1980s": 40, "1990s": 55, "2000s": 55, "2010s": 70, "2020s": 55 } },
+    "institutional_stability": { "indicators": ["trust in government", "polarization gap (inverse)", "electoral integrity (inverse decline)", "political violence (inverse)"], "scores": { "1970s": 55, "1980s": 55, "1990s": 50, "2000s": 55, "2010s": 35, "2020s": 25 } },
+    "opportunity": { "indicators": ["median household income (real)", "homeownership", "housing affordability (inverse)", "economic mobility"], "scores": { "1970s": 70, "1980s": 55, "1990s": 60, "2000s": 45, "2010s": 45, "2020s": 50 } }
+  },
+  "models": {
+    "equal_weight": { "weights": "all 1/8", "composite": { "1970s": 59, "1980s": 55, "1990s": 60, "2000s": 56, "2010s": 51, "2020s": 40 } },
+    "economic_weighted": { "weights": "economic 2x, fiscal 1.5x, wealth 1.5x, others 1x", "composite": { "1970s": 54, "1980s": 51, "1990s": 62, "2000s": 52, "2010s": 49, "2020s": 38 }, "note": "Penalizes 2020s fiscal + wealth; rewards 1990s consolidation" },
+    "human_wellbeing": { "weights": "health 2x, social 2x, opportunity 1.5x, wealth 1.5x, freedom 1x, others 1x", "composite": { "1970s": 54, "1980s": 50, "1990s": 58, "2000s": 56, "2010s": 56, "2020s": 46 }, "note": "Best view for ordinary living standards; 2020s less catastrophic here (income records, low unemployment, falling crime) but dragged by housing + health plateau" },
+    "freedom_weighted": { "weights": "freedom 3x, institutional 2x, social 1x, others 1x", "composite": { "1970s": 61, "1980s": 58, "1990s": 60, "2000s": 61, "2010s": 50, "2020s": 32 }, "note": "2020s collapse driven by freedom/institutional scores" },
+    "fiscal_sustainability": { "weights": "fiscal 3x, economic 1.5x, institutional 1x, others 1x", "composite": { "1970s": 57, "1980s": 49, "1990s": 66, "2000s": 53, "2010s": 49, "2020s": 30 }, "note": "2020s worst — debt, deficits, interest burden all at post-WWII extremes ex-crises" }
+  },
+  "reading_guide": "All models agree: 1990s and 1970s score best (for opposite reasons — 1970s: low inequality, fiscal calm, rising health despite stagflation; 1990s: growth, fiscal surpluses, falling crime). All models agree: 2020s score worst, driven by fiscal deterioration, wealth concentration, and the freedom/institutional collapse. The 2010s are middling: good social stability, bad inequality and institutions. The composite is NOT a verdict on national worth — it is a lens; change the weights and the ranking of decades changes materially."
+}

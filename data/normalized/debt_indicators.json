@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-23",
+  "note": "Federal fiscal indicators. Sources: OMB Historical Tables (historic FY data), Treasury Fiscal Data, CBO baselines. Negative deficit = surplus. FY = fiscal year (ends Sept 30). FY2025 values verified ($1.8T deficit, 5.8% of GDP; net interest $970B = 3.2% of GDP; debt held by public ~100% of GDP). Projections: CBO Feb 2026 baseline — FY2026 deficit $1.9T, debt held by public 120% of GDP by 2036; CBO long-term (Mar 2026): ~175% of GDP by mid-2050s. Quality: HIGH for verified/recent; MEDIUM for historical benchmarks (minor revisions).",
+  "series": {
+    "debt_held_by_public_pct_gdp": {
+      "unit": "% of GDP", "source": ["source-005", "source-017"], "quality": "MEDIUM",
+      "note": "End of fiscal year. 1945-1946 WWII peak ~100-106%; fell to ~24-27% by mid-1970s; rising since 1981 (26%→39% under Reagan); fell to 32.5% (2001) under Clinton; 53% (2009) GWB; 61% (2010) Obama peak; ~100% (2021); ~99-100% (2024-2025).",
+      "data": { "1940": 44.0, "1945": 101.0, "1950": 63.0, "1955": 49.0, "1960": 44.0, "1965": 38.0, "1970": 27.0, "1975": 25.0, "1980": 26.0, "1985": 36.0, "1990": 42.0, "1995": 48.0, "2000": 34.7, "2005": 36.0, "2008": 40.0, "2010": 61.0, "2015": 72.0, "2019": 79.0, "2020": 98.0, "2021": 99.0, "2022": 96.0, "2023": 97.0, "2024": 99.0, "2025": 100.0 }
+    },
+    "deficit_pct_gdp": {
+      "unit": "% of GDP (negative = deficit, positive = surplus)", "source": ["source-005", "source-017"], "quality": "MEDIUM",
+      "note": "FY2025 -5.8% verified. WWII deficits to -30% (FY1943). FY2000 surplus +2.3%.",
+      "data": { "1943": -30.3, "1946": -7.9, "1950": 0.8, "1955": -1.8, "1960": 0.1, "1965": -0.2, "1970": -0.3, "1975": -3.4, "1980": -2.7, "1983": -6.0, "1986": -5.1, "1989": -2.9, "1992": -4.7, "1995": -2.2, "2000": 2.3, "2003": -3.4, "2007": -1.1, "2009": -9.8, "2013": -4.1, "2016": -3.2, "2019": -4.6, "2020": -14.9, "2021": -12.4, "2022": -5.5, "2023": -6.2, "2024": -6.4, "2025": -5.8 }
+    },
+    "net_interest_pct_gdp": {
+      "unit": "% of GDP", "source": ["source-005", "source-006", "source-018"], "quality": "HIGH",
+      "note": "FY2025 = 3.2% ($970B) verified. Interest as % of revenue FY2025 ≈ 19%; as % of outlays ≈ 13.8%. CBO: net interest doubles to ~$2.1T (~4.6% of GDP) by FY2035.",
+      "data": { "1980": 1.9, "1990": 3.2, "1995": 3.2, "2000": 2.3, "2005": 1.8, "2010": 1.4, "2015": 1.2, "2020": 1.6, "2021": 1.5, "2022": 1.8, "2023": 2.4, "2024": 3.0, "2025": 3.2 }
+    },
+    "revenue_pct_gdp": {
+      "unit": "% of GDP", "source": ["source-017"], "quality": "MEDIUM",
+      "note": "Historical band ~15-20.5%. Peaks: FY2000 20.6%, FY2022 19.7% (inflation+growth). Troughs: FY2009 15.1% (crisis). FY2024 17.3%.",
+      "data": { "1950": 14.4, "1960": 17.8, "1970": 19.0, "1980": 18.9, "1990": 18.0, "2000": 20.6, "2009": 15.1, "2015": 18.0, "2019": 16.3, "2022": 19.7, "2024": 17.3, "2025": 17.7 }
+    },
+    "outlays_pct_gdp": {
+      "unit": "% of GDP", "source": ["source-017"], "quality": "MEDIUM",
+      "note": "FY2025 23.3% verified ($7.0T). Peace-time norm ~20-21%; crisis years to 25%+.",
+      "data": { "1950": 15.6, "1960": 17.2, "1970": 19.3, "1980": 21.6, "1990": 21.7, "2000": 18.2, "2009": 24.4, "2019": 21.0, "2020": 31.2, "2021": 30.0, "2022": 25.2, "2023": 22.7, "2024": 23.7, "2025": 23.3 }
+    },
+    "mandatory_vs_discretionary_share": {
+      "unit": "% of total outlays (FY2024 approx)", "source": ["source-017"], "quality": "MEDIUM",
+      "note": "Structural shift: mandatory (SS, Medicare, Medicaid, income security, interest) ~62-65%; discretionary ~25-28% (defense ~12-13%, non-defense ~12-15%); interest ~13-14% (rising).",
+      "data": { "mandatory_excl_interest": 61, "discretionary_defense": 13, "discretionary_nondefense": 13, "interest": 13 }
+    },
+    "debt_accumulation_by_administration_trillions": {
+      "unit": "$T increase in gross federal debt during tenure (approx)", "source": ["source-006", "source-017"], "quality": "MEDIUM",
+      "note": "GROSS DEBT Δ — attribution requires care (root Section 5): includes inherited crises, wars, recessions, interest. Not a 'president caused this' measure.",
+      "data": {
+        "reagan": { "years": "1981-1989", "delta_T": 1.86, "note": "Tax cuts + defense + interest; debt/GDP public 26%→39%" },
+        "bush41": { "years": "1989-1993", "delta_T": 1.55, "note": "S&L cleanup, recession, 1990 tax increase insufficient" },
+        "clinton": { "years": "1993-2001", "delta_T": 1.40, "note": "Surpluses 1998-2001; debt/GDP fell 47%→32.5% (public)" },
+        "bush43": { "years": "2001-2009", "delta_T": 4.99, "note": "Tax cuts, wars, Medicare Part D, 2001 & 2007-09 recessions, crisis; debt/GDP 32.5%→53% (public)" },
+        "obama": { "years": "2009-2017", "delta_T": 8.59, "note": "GFC response (ARRA, TARP), lost revenue from crisis, ACA; deficits fell from 9.8% to 3.2%; debt/GDP 53%→77% (public)" },
+        "trump1": { "years": "2017-2021", "delta_T": 7.82, "note": "TCJA + COVID response (CARES $2.2T etc.); debt/GDP 77%→100% (public)" },
+        "biden": { "years": "2021-2025", "delta_T": 8.22, "note": "ARP + IRA/CHIPS/Infrastructure + high interest rates; deficit fell 12.4%→6.4%; debt/GDP flat ~99-100% (public)" },
+        "trump2": { "years": "2025-2026 (partial)", "delta_T": 1.20, "note": "INCOMPLETE. OBBBA adds ~$3.4T to 10-yr deficits (CBO); FY2025 deficit $1.8T" }
+      }
+    },
+    "tax_bill_scores_trillions": {
+      "unit": "$T, 10-year static/conventional scores", "source": ["source-005", "source-019", "source-018"], "quality": "MEDIUM",
+      "note": "Conventional (static) CBO/JCT scores; 'dynamic' estimates typically recover a small fraction. None of these bills was scored as self-financing by CBO/JCT.",
+      "data": {
+        "ERTA_1981": { "score": 0.75, "note": "Reagan 1981; revenue loss ~$750B over 1981-86 window in then-dollars (JCT); effective top rate 70%→50%" },
+        "TRA_1986": { "score": 0.0, "note": "Bipartisan reform; revenue-neutral on paper; broadened base, cut top rate to 28%" },
+        "Bush_2001_2003": { "score": 2.1, "note": "EGTRRA+JGTRRA; ~$2.1T 2001-2013 incl. interest; top 39.6%→35%" },
+        "TCJA_2017": { "score": 1.5, "note": "~$1.5T over 10 yrs (JCT/CBO); corporate 35%→21%; top individual 39.6%→37%" },
+        "OBBBA_2025": { "score": 3.4, "note": "CBO: net +$3.4T FY2025-34 unified deficit (incl. making TCJA permanent +$858B); Tax Foundation revenue effect -$5.2T; CRFB: +$2.4T primary, +$3.0T debt" }
+      }
+    }
+  }
+}

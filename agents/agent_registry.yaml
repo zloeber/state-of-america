@@ -1,0 +1,117 @@
+# Agent Registry
+
+Version: 1.0.0
+Generated: 2026-08-23
+Lineage: prompts/000_root_prompt.md -> prompts/001_research_decomposition.md
+
+# Execution model note: this research was executed by a single coding agent
+# ("buffy") with tool access (web_search, read_url, file editing, terminal,
+# preview). No separate LLM subagent invocations occurred. Where the execution
+# graph lists domain "agents", they are research tasks within the single run.
+# Model metadata is recorded as UNKNOWN per root Section 23 (never fabricate
+# model metadata).
+
+agents:
+  - id: agent-strategy
+    role: Research decomposition and program design
+    prompt_version: "001"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, read_url, file_edit, terminal]
+    status: complete
+
+  - id: agent-econ
+    role: Economics domain (growth, employment, inflation, living standards)
+    prompt_version: "002"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, file_edit]
+    status: complete
+
+  - id: agent-wealth
+    role: Wealth and income distribution, middle class
+    prompt_version: "002"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, file_edit]
+    status: complete
+
+  - id: agent-fiscal
+    role: Federal debt, deficits, fiscal sustainability
+    prompt_version: "002"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, file_edit]
+    status: complete
+
+  - id: agent-health
+    role: Population health, healthcare spending-vs-outcomes
+    prompt_version: "002"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, file_edit]
+    status: complete
+
+  - id: agent-freedom
+    role: Freedom, democracy, institutions (FH, V-Dem, EIU, Polity)
+    prompt_version: "002"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, file_edit]
+    status: complete
+
+  - id: agent-crises
+    role: Financial crises and bubbles database
+    prompt_version: "002"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, file_edit]
+    status: complete
+
+  - id: agent-stability
+    role: Social stability (crime, poverty, addiction, polarization, unrest)
+    prompt_version: "002"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, file_edit]
+    status: complete
+
+  - id: agent-political
+    role: Political history, control, legislation, wars, recessions
+    prompt_version: "002"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, file_edit]
+    status: complete
+
+  - id: agent-verify
+    role: Source validation and cross-checking
+    prompt_version: "003"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [web_search, read_url]
+    status: complete
+
+  - id: agent-synthesis
+    role: Cross-domain synthesis, scorecards, indices, myth-vs-evidence
+    prompt_version: "004"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [file_edit]
+    status: complete
+
+  - id: agent-redteam
+    role: Falsification attempts on every major conclusion
+    prompt_version: "003"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [file_edit]
+    status: complete
+
+  - id: agent-publish
+    role: Report, explorer, presentation, datasets, manifest
+    prompt_version: "004"
+    model: UNKNOWN
+    provider: UNKNOWN
+    tools_used: [file_edit, terminal, preview]
+    status: complete

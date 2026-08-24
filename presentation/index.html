@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The State of America — Presentation</title>
+<style>
+  :root{
+    --bg:#0c0e12; --panel:#151821; --ink:#ece9e0; --dim:#9aa1ad; --line:#262b36;
+    --accent:#c9a227; --d:#3b82c4; --r:#c94f4f; --ok:#5cb87a; --warn:#d98c3d;
+    --serif:Georgia,'Times New Roman',serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;overflow:hidden}
+  .deck{position:fixed;inset:0}
+  .slide{position:absolute;inset:0;padding:48px 64px 72px;display:none;flex-direction:column;overflow:auto;background:
+    radial-gradient(1200px 500px at 80% -10%, #1a1e2a 0%, transparent 60%), var(--bg)}
+  .slide.active{display:flex}
+  .kicker{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  h1{font-family:var(--serif);font-size:52px;margin:0 0 6px;line-height:1.1}
+  h2{font-family:var(--serif);font-size:34px;margin:0 0 14px;line-height:1.15}
+  h3{font-family:var(--serif);font-size:20px;margin:14px 0 6px}
+  .sub{color:var(--dim);font-size:15px;max-width:900px;margin:0 0 18px}
+  .big{font-family:var(--serif);font-size:56px;font-weight:700;line-height:1.1}
+  .big small{font-size:22px;color:var(--dim);font-weight:400}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}.slide{padding:28px 24px 80px}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .card h4{margin:0 0 6px;font-size:14px;letter-spacing:.3px}
+  .stat{font-family:var(--serif);font-size:32px;font-weight:700}
+  .stat small{font-size:13px;color:var(--dim);font-weight:400}
+  .lab{font-size:11.5px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+  .muted{color:var(--dim)} .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:#e08a8a}
+  table{border-collapse:collapse;width:100%;font-size:13.5px}
+  th,td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{color:var(--dim);font-weight:600}
+  .pill{display:inline-block;padding:1px 9px;border-radius:10px;font-size:12px;font-weight:600}
+  .pill.D{background:#1d2f44;color:#7fb4e8}.pill.R{background:#40201f;color:#e88f8f}
+  .bar-row{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:13px}
+  .bar{height:15px;border-radius:3px}
+  .foot{position:fixed;left:0;right:0;bottom:0;padding:12px 64px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--dim);background:linear-gradient(0deg,#0c0e12 60%,transparent);z-index:5}
+  #dots{display:flex;gap:5px}
+  #dots button{width:8px;height:8px;border-radius:50%;border:none;background:#3a4150;cursor:pointer;padding:0}
+  #dots button.on{background:var(--accent)}
+  .hint{font-size:11px;color:#5a6272}
+  .arrow{position:fixed;top:50%;transform:translateY(-50%);font-size:30px;color:#4a5262;background:none;border:none;cursor:pointer;z-index:6;padding:16px}
+  .arrow:hover{color:var(--accent)}
+  #prev{left:8px}#next{right:8px}
+  ul{margin:6px 0;padding-left:20px}
+  li{margin:4px 0}
+  .tag{font-size:11px;color:var(--dim);background:var(--panel);border:1px solid var(--line);padding:1px 8px;border-radius:4px;margin-right:6px}
+  .endmark{color:#3a4150;font-size:11px;margin-top:auto;padding-top:20px}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+<!-- ============ COVER ============ -->
+<section class="slide active">
+  <div style="margin:auto 0">
+    <div class="kicker">A Data-Driven Investigation · 1900–2026</div>
+    <h1>THE STATE<br>OF AMERICA</h1>
+    <div style="font-family:var(--serif);font-size:22px;color:var(--dim);margin:10px 0 26px;font-style:italic">Wealth, Health, Freedom, Debt &amp; Stability Across Political Eras</div>
+    <div class="grid g3" style="max-width:900px">
+      <div class="card"><div class="lab">Median income (2024)</div><div class="stat">$83,730 <small>record</small></div></div>
+      <div class="card"><div class="lab">Life expectancy (2024)</div><div class="stat">79.0 <small>record</small></div></div>
+      <div class="card"><div class="lab">Debt / GDP (public)</div><div class="stat">~100% <small>→120% by 2036</small></div></div>
+      <div class="card"><div class="lab">Top 1% wealth share</div><div class="stat">30–42% <small>range</small></div></div>
+      <div class="card"><div class="lab">V-Dem democracy</div><div class="stat">0.57 <small class="bad">60-yr low</small></div></div>
+      <div class="card"><div class="lab">Net interest FY2025</div><div class="stat">$970B <small>≈19% of revenue</small></div></div>
+    </div>
+    <p class="muted" style="margin-top:22px;font-size:13.5px">Every figure is traceable: Claim → Dataset → Source → Methodology → Red Team → Prompt → Model.
+    Research date Aug 23, 2026. Model metadata: UNKNOWN (recorded honestly). Use ← → keys.</p>
+  </div>
+</section>
+
+<!-- ============ 1. EXECUTIVE SUMMARY ============ -->
+<section class="slide">
+  <div class="kicker">01 · Executive Summary</div>
+  <h2>The richest, healthiest, most unequal, most indebted, least democratic America in 60 years</h2>
+  <div class="grid g2">
+    <div class="card"><h4 class="ok">What is strong</h4><ul>
+      <li>Record real median income (<b>$83,730</b>), record wealth, record life expectancy (<b>79.0</b>)</li>
+      <li>Crime at multi-decade lows — homicide near a <b>75-year low</b> (2025 prelim)</li>
+      <li>Full employment (unemployment 4.1%), fastest-ever job recovery (2021–23)</li>
+      <li>Banking system far stronger than 2008 (capital ~2×)</li></ul></div>
+    <div class="card"><h4 class="bad">What is weak</h4><ul>
+      <li>Wealth concentration since ~1980: top 1% at <b>30–42%</b> (by measure)</li>
+      <li>Debt at <b>100% of GDP</b>, interest $970B/yr and doubling; deficits ~6% at full employment</li>
+      <li>Freedom at 60-year lows: <b>FH 81, V-Dem 0.57, EIU 7.65</b></li>
+      <li>Valuations near 2000 levels (<b>CAPE ~41</b>); housing unaffordability at records</li></ul></div>
+  </div>
+  <p style="margin-top:14px;font-size:14px">Party effects: real on specific policies (taxes, transfers, regulation, consolidation), weak on headline macro (cycles, Fed, and shocks dominate). The debt era and the institutional erosion are <b>bipartisan</b> with asymmetric mechanisms.</p>
+</section>
+
+<!-- ============ 2. HISTORICAL TIMELINE ============ -->
+<section class="slide">
+  <div class="kicker">02 · America's Historical Timeline</div>
+  <h2>Four eras of American political economy</h2>
+  <div class="grid g4">
+    <div class="card"><h4>1900–1932<br><span class="muted" style="font-weight:400">Gilded → Collapse</span></h4><p style="font-size:12.5px;margin:4px 0">Industrialization, Progressivism, WWI, Roaring Twenties → Great Depression (−26% GDP, unemployment 25%). Panics recur; no safety net.</p></div>
+    <div class="card"><h4>1933–1980<br><span class="muted" style="font-weight:400">The Great Compression</span></h4><p style="font-size:12.5px;margin:4px 0">New Deal, WWII, the most equal era in US history; median income triples; poverty halves; 1970s stagflation ends the era.</p></div>
+    <div class="card"><h4>1981–2008<br><span class="muted" style="font-weight:400">The Market Era</span></h4><p style="font-size:12.5px;margin:4px 0">Deregulation, disinflation, tax cuts, rising inequality, the debt era begins; two booms, two busts (2001, 2008).</p></div>
+    <div class="card"><h4>2009–present<br><span class="muted" style="font-weight:400">Crisis Management</span></h4><p style="font-size:12.5px;margin:4px 0">GFC and COVID responses, slow recovery, pandemic inflation, polarization and democratic erosion, structural deficits.</p></div>
+  </div>
+  <h3>Key structural facts</h3>
+  <ul style="font-size:13.5px">
+    <li><b>11 of 13 recessions since 1948 began under Republican presidents</b> — a robust pattern; causation unproven (Fed, oil, financial cycles).</li>
+    <li>Unified government has been rare since 1980 — most big legislation was bipartisan or reconciliation-only.</li>
+    <li>Wars &amp; shocks: WWI, flu, Depression, WWII, Korea, Vietnam, oil 1973/79, Cold War end, 9/11, GFC, COVID, Ukraine, Gaza.</li>
+  </ul>
+</section>
+
+<!-- ============ 3. WEALTH DISTRIBUTION ============ -->
+<section class="slide">
+  <div class="kicker">03 · Wealth Distribution</div>
+  <h2>Concentration: U-shaped across the century, rising since 1980</h2>
+  <div class="grid g2">
+    <div class="card">
+      <div class="lab">Top 1% wealth share, by measure (range)</div>
+      <div id="wChart"></div>
+      <p class="muted" style="font-size:12px;margin:6px 0 0">Fed DFA: ~30% (1989) → ~30.5% (2024), mid-30s peak; Saez–Zucman: ~25% (1980) → ~41%; SCF: ~35%. Direction unanimous; level differs by method.</p>
+    </div>
+    <div class="card">
+      <div class="lab">Key distribution facts</div>
+      <ul style="font-size:13.5px">
+        <li>Bottom <b>50%</b> own <b>~2.5%</b> of wealth; top 0.1% own ~14.5%.</li>
+        <li>Top 1% income share: <b>10% (1980) → ~19–21%</b>; Gini 0.386 (1968) → ~0.49.</li>
+        <li>Top 10% hold <b>~90% of equities</b> — the market is not the median American.</li>
+        <li>Union density: 20.1% (1983) → 9.9% (2024).</li>
+        <li>The 1980s inflection coincides with tax-rate cuts, deregulation, globalization, automation, and union decline — <b>bipartisan policy + structure</b>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. MIDDLE CLASS ============ -->
+<section class="slide">
+  <div class="kicker">04 · Middle-Class Health</div>
+  <h2>Stronger absolutely. Weaker relatively.</h2>
+  <div class="grid g3">
+    <div class="card"><div class="lab">Adults in middle-income households</div><div class="stat">61% → 51%</div><div class="muted" style="font-size:12px">1971 → 2023 (Pew)</div></div>
+    <div class="card"><div class="lab">Middle 60% share of income</div><div class="stat">62% → 43%</div><div class="muted" style="font-size:12px">1970 → 2023 (Pew)</div></div>
+    <div class="card"><div class="lab">Real median household income</div><div class="stat">$59.6k → $83.7k</div><div class="muted" style="font-size:12px">1970 → 2024 (2024$)</div></div>
+    <div class="card"><div class="lab">Median price / median income</div><div class="stat">3.3 → 5.7</div><div class="muted" style="font-size:12px">1970s → 2024 (housing)</div></div>
+    <div class="card"><div class="lab">Real wage growth (median)</div><div class="stat">~0.3%/yr</div><div class="muted" style="font-size:12px">1970–2015; accelerated 2019–24 for bottom decile</div></div>
+    <div class="card"><div class="lab">Intergenerational mobility</div><div class="stat">90% → ~50%</div><div class="muted" style="font-size:12px">Chance child outearns parents (1940s → 1980s cohorts, Chetty)</div></div>
+  </div>
+  <p style="font-size:14px;margin-top:12px">Honest description: the middle class did not get poorer — <b>it got left behind relative to the top</b>, while housing/health/education costs absorbed much of its gains.</p>
+</section>
+
+<!-- ============ 5. NATIONAL DEBT ============ -->
+<section class="slide">
+  <div class="kicker">05 · National Debt</div>
+  <h2>From 26% of GDP (1980) to 100% (2025) — and climbing</h2>
+  <div class="grid g2">
+    <div class="card"><div class="lab">Debt held by the public, % of GDP</div><div id="debtChart"></div>
+      <p class="muted" style="font-size:12px;margin:4px 0 0">Projection: 120% by 2036, ~175% by mid-2050s (CBO current law). Net interest 3.2% of GDP → ~4.6% by 2035.</p></div>
+    <div class="card">
+      <div class="lab">Debt/GDP change by administration (public)</div>
+      <div id="adminDebt"></div>
+      <p class="muted" style="font-size:12px;margin:6px 0 0">Every GOP era since 1981 raised debt/GDP; Clinton's is the only sustained reduction; Obama's rise was mostly inherited crisis years; Biden flat.</p>
+    </div>
+  </div>
+  <p style="font-size:13.5px;margin-top:10px"><b>Attribution rule:</b> debt is not caused by the president — it is caused by tax cuts (R-led), spending (D-led), wars, crises, recessions, and interest. Post-2001: ≈⅓ tax cuts, ≈⅓ spending (wars, COVID, entitlements), ≈⅓ interest. Healthcare is the largest structural driver.</p>
+</section>
+
+<!-- ============ 6. FINANCIAL CRISES ============ -->
+<section class="slide">
+  <div class="kicker">06 · Financial Crises</div>
+  <h2>Bubble → crash → intervention → recovery — four times in 40 years</h2>
+  <table>
+    <thead><tr><th>Crisis</th><th>Asset / leverage</th><th>Trigger</th><th>Response &amp; recovery</th><th>Attribution</th></tr></thead>
+    <tbody>
+      <tr><td><b>Panic 1907</b></td><td>Trust companies, call loans</td><td>Knickerbocker run</td><td>Morgan private rescue → Fed 1913; ~1 yr</td><td>Pre-Fed era</td></tr>
+      <tr><td><b>1929–33</b></td><td>Margin debt, equities</td><td>Crash + bank runs</td><td>New Deal; GDP −26%; WWII for full recovery</td><td>1920s excess; Hoover (R) collapse, FDR (D) response</td></tr>
+      <tr><td><b>S&amp;L 1980s</b></td><td>CRE, junk bonds</td><td>1986 CRE collapse</td><td>RTC; ~$160B (3.2% GDP); 1989–95</td><td>Deregulation: DIDMCA 1980 (D), Garn-St. Germain 1982 (R)</td></tr>
+      <tr><td><b>Black Monday 1987</b></td><td>Equities, portfolio insurance</td><td>Oct 19, −22.6%</td><td>Greenspan liquidity put; ~2 yrs</td><td>Reagan era; Fed response</td></tr>
+      <tr><td><b>Dot-com 2000–02</b></td><td>Tech/telecom</td><td>Mar 2000 peak</td><td>Fed easing; NASDAQ −78%; 15-yr recovery</td><td>Clinton buildup, Bush bust</td></tr>
+      <tr><td><b>2008 GFC</b></td><td>Housing, MBS/CDO, 30:1 bank leverage</td><td>Lehman, Sep 2008</td><td>TARP, QE, ARRA, Dodd-Frank; slowest recovery since GD</td><td><b>Bipartisan 15-yr buildup</b> (GLB 1999 D, CFMA 2000 D, SEC 2004 R, Fed 2001–04)</td></tr>
+      <tr><td><b>COVID 2020</b></td><td>Equities, credit</td><td>Pandemic (external)</td><td>CARES $2.2T, Fed 0%+QE; V-recovery</td><td>Trump era, bipartisan response</td></tr>
+      <tr><td><b>Regional banks 2023</b></td><td>HTM bonds, uninsured deposits</td><td>SVB run</td><td>FDIC exception, BTFP; weeks</td><td>Biden era; 2018 deregulation (R) exposed gaps</td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="font-size:12.5px;margin-top:8px">Lesson across crises: leverage builds in complacent eras; deregulation contributed to 1929, S&L, and 2008; post-2008 bank capital worked (2020, 2023); crises redistribute wealth upward; attribution confined to the visible administration is almost always wrong.</p>
+</section>
+
+<!-- ============ 7. ECONOMIC PERFORMANCE BY PARTY ============ -->
+<section class="slide">
+  <div class="kicker">07 · Economic Performance by Party</div>
+  <h2>The averages favor Democrats — the causality does not</h2>
+  <div class="grid g2">
+    <div class="card"><div class="lab">Party averages, 1948–2024 (calendar years)</div>
+      <div id="partyBars"></div></div>
+    <div class="card">
+      <div class="lab">Why the gap is not proof</div>
+      <ul style="font-size:13.5px">
+        <li><b>Timing:</b> 11 of 13 recessions began under R presidents; recoveries under D.</li>
+        <li><b>Shocks:</b> oil 1973/79, 2008, COVID — none party-made.</li>
+        <li><b>Sample:</b> 37 vs 40 years; a handful of administrations drive the gap.</li>
+        <li><b>Fed:</b> inflation and much of the cycle are monetary, not presidential.</li>
+        <li>Where policy is direct — taxes, transfers, regulation, consolidation — party effects are legible. Where it is indirect — growth, inflation, markets — they are not.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. FOUR-YEAR PERIODS ============ -->
+<section class="slide">
+  <div class="kicker">08 · Four-Year Political Periods</div>
+  <h2>Comparable observations, 1901–2028</h2>
+  <table>
+    <thead><tr><th>Period</th><th>President</th><th>Party</th><th>Assessment (condensed)</th></tr></thead>
+    <tbody id="periodRows"></tbody>
+  </table>
+  <p class="muted" style="font-size:12px;margin-top:8px">Full 32-period table with control, recessions, and indicators: <code>data/normalized/four_year_periods.json</code> and the explorer. Incomplete periods marked *.</p>
+</section>
+
+<!-- ============ 9. POPULATION HEALTH ============ -->
+<section class="slide">
+  <div class="kicker">09 · Population Health</div>
+  <h2>Historical best, comparative worst, world's most expensive</h2>
+  <div class="grid g2">
+    <div class="card"><div class="lab">Life expectancy (CDC)</div><div id="leChart"></div>
+      <p class="muted" style="font-size:12px;margin:4px 0 0">Peers: ~82–84. The 2010–2019 stall = deaths of despair; COVID −2.4 yrs; record 79.0 by 2024.</p></div>
+    <div class="card">
+      <div class="lab">Spending vs outcomes</div>
+      <ul style="font-size:13.5px">
+        <li>Healthcare = <b>18.0% of GDP</b> ($5.3T; $15,474/person) vs ~10–12% peers</li>
+        <li>Infant mortality 5.6 vs ~3–4; maternal ~19–33 vs ~3–8</li>
+        <li>Obesity ~42% vs 15–25%; overdose deaths peaked ~112k (2023)</li>
+        <li>Uninsured ~8% (16.3% in 2010, pre-ACA)</li>
+        <li>US leads: cancer survival, innovation, clinical trials, acute care for the insured</li>
+        <li>Verdict: world-class medicine, poor population health — a cost-structure failure neither party has fixed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. FREEDOM ============ -->
+<section class="slide">
+  <div class="kicker">10 · Freedom &amp; Democracy</div>
+  <h2>Measured freedom: multi-decade lows, sharpest drop in 2025</h2>
+  <div class="grid g2">
+    <div class="card"><div class="lab">US scores, three independent indices</div><div id="freedomChart"></div>
+      <p class="muted" style="font-size:12px;margin:4px 0 0">FH 94→81 · V-Dem 0.75→0.57 (2025, −24% in a year) · EIU 8.2→7.65. These measure political rights &amp; civil liberties, not policy preferences.</p></div>
+    <div class="card">
+      <div class="lab">What declined &amp; honest counterpoints</div>
+      <ul style="font-size:13.5px">
+        <li>Sub-indicators: electoral integrity (2020 denial), executive constraints (2025 actions), media independence</li>
+        <li>Jan 6, 2021; record threats against officials; assassination attempts (2024)</li>
+        <li>Trust in government: 77% (1964) → ~16–24%; polarization at records</li>
+        <li><b>Counterpoints:</b> far freer than 1950 (McCarthyism, segregation); elections still certified; courts still check the executive; Polity still codes 10; status remains "Free"</li>
+        <li>Sharpest declines: 2017–21 and 2025 (both Trump administrations); longer erosion: bipartisan</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. INSTITUTIONAL STABILITY ============ -->
+<section class="slide">
+  <div class="kicker">11 · Institutional Stability</div>
+  <h2>Strained but holding</h2>
+  <div class="grid g3">
+    <div class="card"><div class="lab">Trust in federal government</div><div class="stat">77% → ~20%</div><div class="muted" style="font-size:12px">1964 → 2015–2024 (Gallup/PEW)</div></div>
+    <div class="card"><div class="lab">R–D values gap (Pew)</div><div class="stat">15pp → 39pp</div><div class="muted" style="font-size:12px">1994 → 2022</div></div>
+    <div class="card"><div class="lab">Congress approval</div><div class="stat">~15–30%</div><div class="muted" style="font-size:12px">chronic since 2010</div></div>
+    <div class="card"><div class="lab">V-Dem executive constraints</div><div class="stat" class="warn">declining</div><div class="muted" style="font-size:12px">2020–2025</div></div>
+    <div class="card"><div class="lab">Electoral certification</div><div class="stat" class="ok">held</div><div class="muted" style="font-size:12px">2020/2022/2024 administered &amp; certified</div></div>
+    <div class="card"><div class="lab">Political violence</div><div class="stat" class="warn">elevated</div><div class="muted" style="font-size:12px">vs 2000–2015 baseline; still low vs most democracies</div></div>
+  </div>
+  <p style="font-size:14px;margin-top:12px">Formal institutions (courts, states, certification) have absorbed shocks that would break weaker systems — but trust, polarization, and executive-constraint erosion are real and worsening.</p>
+</section>
+
+<!-- ============ 12. WEALTH & POLITICAL POWER ============ -->
+<section class="slide">
+  <div class="kicker">12 · Wealth &amp; Political Power</div>
+  <h2>Money in politics: the quietest bipartisan failure</h2>
+  <ul style="font-size:15px;max-width:900px">
+    <li>Campaign spending ~$16B (2024 cycle, both parties) — roughly 5× the 2008 level in real terms; <i>Citizens United</i> (2010) opened unlimited outside money; both parties defend their fundraising machines.</li>
+    <li>Top 1% own ~50% of equities and ~30–42% of wealth; political donations skew steeply to the top — policy responsiveness research (Gilens–Page) finds elite influence on policy outcomes far exceeds median-voter influence.</li>
+    <li>Revolving doors, lobbying ($4B+/yr), and industry-financed campaigns correlate with the policy status quo that produces the report's failures (healthcare prices, housing, tax complexity).</li>
+    <li>Neither party has proposed systemic reform while in power; both benefit from the current system.</li>
+  </ul>
+  <div class="card"><p class="muted" style="margin:0;font-size:13px">Caveat: correlational evidence; the direction of causality (money→policy vs policy→money) is debated. But the concentration of both wealth and political influence since 1980 is one of the report's clearest structural findings.</p></div>
+</section>
+
+<!-- ============ 13. FISCAL FRAGILITY ============ -->
+<section class="slide">
+  <div class="kicker">13 · Fiscal Fragility</div>
+  <h2>The slow-moving crisis: debt + interest + deficits + growth</h2>
+  <div class="grid g4">
+    <div class="card"><div class="lab">Debt / GDP (public)</div><div class="stat">~100% <small class="warn">→120% by '36</small></div></div>
+    <div class="card"><div class="lab">Net interest / GDP</div><div class="stat">3.2% <small class="warn">→~4.6% by '35</small></div></div>
+    <div class="card"><div class="lab">Interest / revenue</div><div class="stat">~19% <small class="warn">and rising</small></div></div>
+    <div class="card"><div class="lab">Deficit at full employment</div><div class="stat">~6% <small>of GDP</small></div></div>
+  </div>
+  <p style="font-size:14.5px;margin-top:12px;max-width:980px">The deficit is now <b>structural</b> — it persists at full employment, driven by interest, healthcare, and aging, not by discretionary spending (defense + non-defense ≈ 26% of outlays and falling). The US borrows in its own currency and the dollar retains reserve status — "unsustainable" means the path is explosive (r &gt; g), not that default is imminent. Fiscal capacity for the next crisis is thinner than 2008 (debt 40% of GDP) or 2020 (80%).</p>
+</section>
+
+<!-- ============ 14. BUBBLE RISK ============ -->
+<section class="slide">
+  <div class="kicker">14 · Financial Bubble Risk</div>
+  <h2>Valuations: second-highest ever</h2>
+  <div class="grid g2">
+    <div class="card">
+      <div class="lab">Shiller CAPE (Aug 2026)</div>
+      <div class="big">~41 <small>vs median ~17</small></div>
+      <p style="font-size:13.5px;margin-top:8px">Only 1999–2000 (peak ~44) was higher. Historically, CAPE &gt; 40 has preceded ~3%/yr average 10-year returns — low, not necessarily negative.</p>
+      <ul style="font-size:13px">
+        <li>AI/tech mega-cap concentration (~35% of S&P weight)</li>
+        <li>Private credit ~$2T+, largely unregulated</li>
+        <li>Commercial real estate stress; housing price/income 5.7</li>
+        <li>Government with the least fiscal space since WWII</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="lab">Why it might be different</div>
+      <ul style="font-size:13.5px">
+        <li>Banks hold ~2× 2007 capital; 2023 crisis contained in weeks</li>
+        <li>Household leverage moderate and prime; strong earnings</li>
+        <li>AI capex could be a 1995-style productivity boom</li>
+        <li>CAPE is a terrible timing tool</li>
+      </ul>
+      <div class="lab" style="margin-top:14px">Verdict</div>
+      <p style="font-size:13.5px">Structurally more fragile than any period since 2007–08 on valuations and fiscal capacity, with a materially stronger banking system. Correction not forecast; margin of safety thin.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15. PARTY SCORECARD ============ -->
+<section class="slide">
+  <div class="kicker">15 · Party Scorecard</div>
+  <h2>Where each party is genuinely stronger — and where both failed</h2>
+  <div class="grid g2">
+    <div class="card"><h4 class="ok">Republican edges</h4><ul style="font-size:13px">
+      <li>Accepting disinflation's pain (with Volcker, a D appointee)</li>
+      <li>Transportation deregulation; 1986 tax reform (bipartisan, GOP-led)</li>
+      <li>1996 welfare-reform design (bipartisan, GOP-led)</li>
+      <li>Low-inflation mature-cycle stewardship (2017–19)</li>
+    </ul>
+    <h4 class="bad">Republican failures</h4><ul style="font-size:13px">
+      <li>Debt/GDP up in <b>every</b> GOP era since 1981</li>
+      <li>2008-era deregulation's final mile (SEC 2004 rule)</li>
+      <li>Election denial, Jan 6 — the largest single contributor to measured democratic decline</li>
+      <li>OBBBA 2025: +$3.4T on CBO's score</li>
+    </ul></div>
+    <div class="card"><h4 class="ok">Democratic edges</h4><ul style="font-size:13px">
+      <li>Poverty reduction via transfers (1960s, 1990s EITC, 2021 CTC)</li>
+      <li>Healthcare access (Medicare/Medicaid, ACA, IRA pricing)</li>
+      <li>Post-2008 financial regulation (Dodd-Frank; validated 2020/23)</li>
+      <li>Fiscal consolidation when attempted (1993, 2010–15, 2021–24)</li>
+      <li>Growth/unemployment/stock averages (timing-caveated)</li>
+    </ul>
+    <h4 class="bad">Democratic failures</h4><ul style="font-size:13px">
+      <li>Vietnam + Great Society without financing → 1970s inflation</li>
+      <li>GLB 1999 / CFMA 2000 deregulation → 2008</li>
+      <li>1994 crime bill era; slow opioid response</li>
+      <li>ARP oversize contributed to 2021–22 inflation</li>
+    </ul></div>
+  </div>
+  <p style="font-size:13px;margin-top:8px"><b>Bipartisan failures:</b> debt, healthcare costs (18% of GDP), housing, money in politics, incarceration, entitlements dodged 30 years, polarization's architecture. <b>Structural:</b> aging, technology, globalization, financialization, climate, geography, COVID aftershocks.</p>
+</section>
+
+<!-- ============ 16. MYTH VS EVIDENCE ============ -->
+<section class="slide">
+  <div class="kicker">16 · Myth vs Evidence</div>
+  <h2>Fourteen disputed claims, verdicts</h2>
+  <table>
+    <thead><tr><th>Claim</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>"Republicans are better for the economy"</td><td class="bad">Contradicted as stated</td></tr>
+      <tr><td>"Democrats are better for the economy"</td><td class="warn">Mixed (timing explains much)</td></tr>
+      <tr><td>"Republicans reduce spending"</td><td class="bad">Contradicted</td></tr>
+      <tr><td>"Democrats cause inflation"</td><td class="warn">Mixed (contributed, not caused)</td></tr>
+      <tr><td>"Tax cuts pay for themselves"</td><td class="bad">Contradicted (no CBO/JCT score in 45 yrs)</td></tr>
+      <tr><td>"Government spending always harms growth"</td><td class="bad">Contradicted (countercyclical spending worked)</td></tr>
+      <tr><td>"Democrats destroy markets"</td><td class="bad">Contradicted (returns higher under D)</td></tr>
+      <tr><td>"Republicans cause recessions"</td><td class="warn">Mixed (11 of 13 starts — causation unproven)</td></tr>
+      <tr><td>"The national debt doesn't matter"</td><td class="bad">Contradicted at current levels</td></tr>
+      <tr><td>"The stock market represents ordinary Americans"</td><td class="bad">Contradicted (top 10% own ~90%)</td></tr>
+      <tr><td>"America is becoming poorer"</td><td class="bad">Contradicted (records at the median)</td></tr>
+      <tr><td>"America is becoming richer"</td><td class="ok">Supported (with skew caveats)</td></tr>
+      <tr><td>"America is becoming less free"</td><td class="warn">Supported for the last decade; contradicted for the last century</td></tr>
+      <tr><td>"America is becoming more free"</td><td class="bad">Contradicted for 2015–2026</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 17. CURRENT AMERICA ============ -->
+<section class="slide">
+  <div class="kicker">17 · Current America (Trump II, Jan 2025–)</div>
+  <h2>Observed facts, separated from forecasts and claims</h2>
+  <div class="grid g4">
+    <div class="card"><div class="lab">GDP 2025</div><div class="stat">+2.1% <small class="warn">slowing (Q2'26 +1.5%)</small></div></div>
+    <div class="card"><div class="lab">Unemployment</div><div class="stat">4.1% <small>Jul 2026</small></div></div>
+    <div class="card"><div class="lab">CPI 2025</div><div class="stat">~2.8% <small class="warn">core sticky</small></div></div>
+    <div class="card"><div class="lab">FY2025 deficit</div><div class="stat">$1.8T <small>5.8% of GDP</small></div></div>
+    <div class="card"><div class="lab">Net interest</div><div class="stat">$970B <small>3.2% of GDP</small></div></div>
+    <div class="card"><div class="lab">Debt / GDP</div><div class="stat">~100% <small class="warn">→120% by '36</small></div></div>
+    <div class="card"><div class="lab">CAPE</div><div class="stat">~41 <small class="warn">2nd-highest ever</small></div></div>
+    <div class="card"><div class="lab">Democracy indices</div><div class="stat" class="bad">record lows</div><div class="muted" style="font-size:12px">V-Dem 0.57 · FH 81 · EIU 7.65</div></div>
+  </div>
+  <p style="font-size:13.5px;margin-top:12px"><b>Policy (observed):</b> One Big Beautiful Bill Act (TCJA made permanent; CBO +$3.4T FY25–34); tariffs; DOGE/federal workforce cuts; regulatory rollbacks; mass deportations. <b>Claims vs analysis:</b> "greatest economy ever" — strong levels, decelerating trend; "tariffs pay down debt" — contradicted by CBO scores. <b>Positive:</b> homicide near 75-yr low; life expectancy 79.0; wages outpacing inflation for lower earners. <b>INCOMPLETE ADMINISTRATION — no verdicts, only observations.</b></p>
+</section>
+
+<!-- ============ 18. THE HARD TRUTH ============ -->
+<section class="slide">
+  <div class="kicker">18 · The Hard Truth</div>
+  <h2>What the evidence forces you to accept</h2>
+  <ul style="font-size:15.5px;max-width:1000px">
+    <li><b>The middle class is not collapsing — it is being outrun.</b> That is harder to fix and harder to admit than a collapse narrative.</li>
+    <li><b>Both parties broke the budget differently, and neither will admit it.</b> R tax cuts + D spending + shared wars/crises/interest = 100% of GDP. The next president inherits a fiscal emergency neither party campaigns on.</li>
+    <li><b>Healthcare costs are the national problem</b> — bigger than debt, housing, or inflation — and both parties protect the system's rent structure.</li>
+    <li><b>America's democracy scores fell to 60-year lows under a Democratic president's watch and fell fastest under a Republican's.</b> The erosion is real, measured, and bipartisan in origin.</li>
+    <li><b>The economy the campaigns argue about is mostly not theirs.</b> Growth, inflation, and markets are dominated by the Fed, the cycle, and luck. Party effects are legible in taxes, transfers, and regulation — not in the GDP number.</li>
+    <li><b>Record wealth + record debt + record valuations + record inequality is a new combination.</b> No historical precedent says it ends well by itself; no law of nature says it must end badly. It is a choice.</li>
+  </ul>
+</section>
+
+<!-- ============ 19. WHAT ACTUALLY MATTERS ============ -->
+<section class="slide">
+  <div class="kicker">19 · What Actually Matters</div>
+  <h2>Political vs structural forces — a separation of powers</h2>
+  <div class="grid g2">
+    <div class="card"><h4>Matters (policy-legible)</h4><ul style="font-size:13.5px">
+      <li>Tax rates and their financing (CBO-scorable)</li>
+      <li>Transfers: EITC, CTC, benefits — measured poverty effects</li>
+      <li>Healthcare access and drug pricing</li>
+      <li>Financial regulation and bank capital</li>
+      <li>Antitrust enforcement</li>
+      <li>Election administration, voting rules, executive constraints</li>
+    </ul></div>
+    <div class="card"><h4>Dominates but isn't "political"</h4><ul style="font-size:13.5px">
+      <li>Federal Reserve policy (inflation, much of the cycle)</li>
+      <li>Demographics and aging</li>
+      <li>Technology and productivity (AI, automation)</li>
+      <li>Globalization and capital flows</li>
+      <li>Energy and climate</li>
+      <li>Global shocks (pandemics, wars, commodity cycles)</li>
+    </ul></div>
+  </div>
+  <p style="font-size:14px;margin-top:12px">The report's meta-finding: <b>elections decide the margins; the margins compound into eras.</b> Party matters most where policy is direct and legible, least where outcomes are indirect — yet the indirect forces (Fed, tech, demographics) have shaped America's last 45 years more than any single administration.</p>
+</section>
+
+<!-- ============ 20. CONCLUSION ============ -->
+<section class="slide">
+  <div class="kicker">20 · Conclusion</div>
+  <h2>Strong. Weak. Fragile. Resilient. Uncertain.</h2>
+  <div class="grid g3">
+    <div class="card"><h4 class="ok">Strong</h4><p style="font-size:13px">Record income and wealth; record life expectancy; full employment; crime at 75-year lows; the world's leading innovation economy; a banking system that passed 2008's lessons.</p></div>
+    <div class="card"><h4 class="bad">Weak</h4><p style="font-size:13px">Distribution (top-1% at 30–42%, bottom-50% at 2.5%); housing affordability; healthcare value; deaths of despair legacy; fiscal discipline in both parties.</p></div>
+    <div class="card"><h4 class="warn">Fragile</h4><p style="font-size:13px">Debt 100% of GDP and rising; interest $970B and doubling; valuations at 2000 levels; private credit; democracy indices at 60-year lows.</p></div>
+    <div class="card"><h4 class="ok">Resilient</h4><p style="font-size:13px">Institutions absorbed Jan 6, COVID, 2020–24 inflation, and 2025's executive era so far; courts, states, certification held; productivity and energy abundance are live upside.</p></div>
+    <div class="card"><h4 class="warn">Uncertain</h4><p style="font-size:13px">Whether the democracy decline is durable erosion or recoverable strain; whether AI is a productivity boom or a bubble; whether the fiscal path is corrected by choice or by crisis.</p></div>
+    <div class="card"><h4>The fork</h4><p style="font-size:13px">The next decade is a choice between fiscal/institutional correction (Scenario C) and forced adjustment (B/D). The material foundation is the best in American history; the institutional superstructure is the most stressed in sixty years.</p></div>
+  </div>
+  <div class="endmark">THE STATE OF AMERICA · v1.0.0 · Research date Aug 23, 2026 · Evidence chain: claim_registry.json → source_registry.json → data/ → methodology.md → red_team_analysis.md · explorer/index.html for interactive drill-down</div>
+</section>
+</div>
+
+<button class="arrow" id="prev" onclick="go(-1)">‹</button>
+<button class="arrow" id="next" onclick="go(1)">›</button>
+<div class="foot"><span id="counter"></span><span class="hint">← → navigate · slides are print-friendly</span><span id="dots"></span></div>
+
+<script>
+/* ---------- DATA (subset; full series in ../data/) ---------- */
+const DEBT={years:[1940,1945,1950,1955,1960,1965,1970,1975,1980,1985,1990,1995,2000,2005,2010,2015,2020,2025],vals:[44,101,63,49,44,38,27,25,26,36,42,48,34.7,36,61,72,98,100]};
+const LE={years:[1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010,2019,2020,2021,2022,2023,2024],vals:[47.3,51.5,54.1,59.7,62.9,68.2,69.7,70.8,73.7,75.4,76.8,78.7,78.8,77.0,76.4,77.5,78.4,79.0]};
+const FH={years:[1990,2016,2021,2026],vals:[95,94,83,81]};
+const VDEM={years:[2016,2020,2024,2025],vals:[79,75,75,57]};
+const EIU={years:[2016,2020,2025],vals:[79.8,79.2,76.5]};
+const W1={years:[1978,1980,1989,2000,2010,2023],lo:[25,25,30,31,35,30],hi:[26,26,32,35,40,42]};
+const ADMDEBT=[["Reagan",13,"R"],["Bush41",8,"R"],["Clinton",-14.5,"D"],["Bush43",20,"R"],["Obama",24,"D"],["Trump1",23,"R"],["Biden",0,"D"],["Trump2*",1,"R"]];
+const PARTY={gdp:["Real GDP growth %/yr",3.64,2.66],unemp:["Unemployment %",5.5,5.8],cpi:["CPI inflation %/yr",3.39,3.67],sp:["S&P 500 total return %/yr",14.8,9.3]};
+const PERIODS=[["1901–1904","T. Roosevelt","R","Industrial expansion; trust-busting."],["1909–1912","Taft","R","Antitrust era; GOP splits 1912."],["1917–1920","Wilson","D","WWI boom; flu; Red Scare."],["1925–1928","Coolidge","R","Roaring Twenties peak."],["1929–1932","Hoover","R","Great Depression: GDP −26%."],["1933–1936","FDR","D","New Deal; recovery begins."],["1941–1944","FDR","D","WWII; unemployment to ~2%."],["1945–1948","Truman","D","Demobilization; GI Bill."],["1953–1956","Eisenhower","R","Golden age; highways."],["1965–1968","Johnson","D","Peak prosperity; Medicare/VRA."],["1973–1976","Nixon/Ford","R","Stagflation; Watergate."],["1977–1980","Carter","D","CPI 13.5%; Volcker appointed."],["1981–1984","Reagan","R","Disinflation; deficits explode."],["1997–2000","Clinton","D","Surpluses; dot-com peak."],["2005–2008","G.W. Bush","R","Housing bust; 2008 crisis."],["2009–2012","Obama","D","Crisis response; ACA; Dodd-Frank."],["2017–2020","Trump 1","R","TCJA; COVID; Jan 6."],["2021–2024","Biden","D","Fastest recovery; inflation→2.9%."],["2025–2028*","Trump 2","R","INCOMPLETE: OBBBA +$3.4T; V-Dem 0.57."]];
+
+/* ---------- SVG helpers ---------- */
+function line(el,series,opt){
+  opt=opt||{};const W=920,H=230,pad={l:48,r:12,t:12,b:26};
+  let all=[];series.forEach(s=>{if(s.lo){s.lo.forEach(v=>all.push(v));s.hi.forEach(v=>all.push(v));}else if(s.vals){s.vals.forEach(v=>all.push(v));}});
+  let mn=Math.min(...all),mx=Math.max(...all);if(opt.min!==undefined)mn=opt.min;if(opt.max!==undefined)mx=opt.max;
+  const sp=mx-mn||1;const xs=[];series.forEach(s=>s.years.forEach(y=>xs.push(y)));
+  const x0=Math.min(...xs),x1=Math.max(...xs);
+  const X=y=>pad.l+(y-x0)/(x1-x0||1)*(W-pad.l-pad.r),Y=v=>pad.t+(1-(v-mn)/sp)*(H-pad.t-pad.b);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><line x1="${pad.l}" y1="${Y(mn)}" x2="${W-pad.r}" y2="${Y(mn)}" stroke="var(--line)"/>`;
+  for(let g=0;g<=3;g++){const v=mn+sp*g/3;const y=Y(v);s+=`<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="var(--line)" opacity=".5"/><text x="${pad.l-6}" y="${y+4}" fill="var(--dim)" font-size="10" text-anchor="end">${Math.round(v*10)/10}</text>`;}
+  [x0,Math.round((x0+x1)/2),x1].forEach(y=>{s+=`<text x="${X(y)}" y="${H-8}" fill="var(--dim)" font-size="10" text-anchor="middle">${y}</text>`;});
+  series.forEach(se=>{
+    if(se.lo){se.years.forEach((y,i)=>{const x=X(y),a=Y(se.hi[i]),b=Y(se.lo[i]);s+=`<rect x="${x-5}" y="${a}" width="10" height="${Math.max(2,b-a)}" fill="${se.c||'var(--accent)'}" opacity=".6"/>`;});}
+    else{s+=`<polyline points="${se.years.map((y,i)=>X(y)+','+Y(se.vals[i])).join(' ')}" fill="none" stroke="${se.c||'var(--accent)'}" stroke-width="2.5"/>`;se.years.forEach((y,i)=>{s+=`<circle cx="${X(y)}" cy="${Y(se.vals[i])}" r="3" fill="${se.c||'var(--accent)'}"/>`;});}
+  });
+  s+='</svg>';el.innerHTML=s;
+}
+function bars(el,rows,colorFn){
+  const mx=Math.max(...rows.map(r=>Math.abs(r[1])))||1;
+  el.innerHTML=rows.map(r=>{const w=Math.abs(r[1])/mx*100;const c=colorFn(r);return `<div class="bar-row"><span style="width:110px;color:var(--dim);font-size:12px">${r[0]}</span><div class="bar" style="width:${w}%;background:${c}"></div><b style="font-size:12.5px">${r[1]>0?'+':''}${r[1]}</b></div>`;}).join('');
+}
+
+/* ---------- Render ---------- */
+line(document.getElementById('wChart'),[{years:W1.years,lo:W1.lo,hi:W1.hi,c:'var(--accent)'}],{min:0,max:50});
+line(document.getElementById('debtChart'),[{years:DEBT.years,vals:DEBT.vals,c:'var(--accent)'}],{min:0});
+line(document.getElementById('leChart'),[{years:LE.years,vals:LE.vals,c:'var(--ok)'}],{min:40});
+line(document.getElementById('freedomChart'),[
+  {years:FH.years,vals:FH.vals,c:'var(--d)'},{years:VDEM.years,vals:VDEM.vals,c:'var(--r)'},{years:EIU.years,vals:EIU.vals,c:'var(--accent)'}
+],{min:30,max:100});
+bars(document.getElementById('adminDebt'),ADMDEBT,r=>r[2]==='D'?'var(--d)':'var(--r)');
+let pb='';Object.keys(PARTY).forEach(k=>{const m=PARTY[k];const mx=Math.max(m[1],m[2])||1;pb+=`<div style="margin:9px 0"><b style="font-size:13px">${m[0]}</b><div class="bar-row"><span style="width:110px;color:var(--dim);font-size:12px">Democratic</span><div class="bar" style="width:${(m[1]/mx*100).toFixed(0)}%;background:var(--d)"></div><b>${m[1]}</b></div><div class="bar-row"><span style="width:110px;color:var(--dim);font-size:12px">Republican</span><div class="bar" style="width:${(m[2]/mx*100).toFixed(0)}%;background:var(--r)"></div><b>${m[2]}</b></div></div>`;});
+document.getElementById('partyBars').innerHTML=pb;
+document.getElementById('periodRows').innerHTML=PERIODS.map(p=>`<tr><td>${p[0]}</td><td>${p[1]}</td><td><span class="pill ${p[2]}">${p[2]}</span></td><td>${p[3]}</td></tr>`).join('');
+
+/* ---------- Navigation ---------- */
+const slides=[...document.querySelectorAll('.slide')];
+let idx=0;
+function dots(){
+  document.getElementById('dots').innerHTML=slides.map((_,i)=>`<button class="${i===idx?'on':''}" onclick="goTo(${i})"></button>`).join('');
+}
+function paint(){
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  document.getElementById('counter').textContent=`${String(idx+1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')} — The State of America`;
+  dots();
+}
+function go(d){idx=Math.min(Math.max(0,idx+d),slides.length-1);paint();}
+function goTo(i){idx=i;paint();}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')go(1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(-1);});
+paint();
+</script>
+</body>
+</html>

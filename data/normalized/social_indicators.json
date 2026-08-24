@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-23",
+  "note": "Social stability indicators. Crime: FBI UCR (2020+ estimated via NIBRS transition; 2024 murder -14.9% verified, violent crime -4.5%, murder rate ~5.0/100k lowest since 2015; 2025 preliminary: violent crime -9.3%, murder -18.1%). Poverty: Census official (SPM differs; 2021 SPM low due to stimulus; 2024 official 12.6% approx). Incarceration: BJS. Homelessness: HUD AHAR point-in-time (undercounts).",
+  "series": {
+    "homicide_rate_per_100k": {
+      "unit": "per 100,000", "source": ["source-015"], "quality": "MEDIUM",
+      "note": "1991 peak 9.8; 2014 trough 4.4; 2020-21 spike ~7.8; 2024 ~5.0 (verified direction); 2025 prelim near 75-year low. Approximate benchmark values.",
+      "data": { "1960": 5.1, "1970": 7.9, "1980": 10.2, "1991": 9.8, "1995": 8.2, "2000": 5.5, "2010": 4.8, "2014": 4.4, "2019": 5.0, "2020": 7.8, "2021": 7.8, "2022": 6.3, "2023": 5.7, "2024": 5.0 }
+    },
+    "violent_crime_rate_per_100k": {
+      "unit": "per 100,000", "source": ["source-015"], "quality": "MEDIUM",
+      "note": "1991 peak ~758; 2014 ~361; 2024 ~359 (lowest since ~1970; verified direction).",
+      "data": { "1960": 161, "1970": 364, "1991": 758, "2000": 506, "2010": 405, "2014": 361, "2019": 380, "2020": 399, "2024": 359 }
+    },
+    "incarceration_rate_per_100k": {
+      "unit": "per 100,000 (all prison+jail)", "source": ["source-016"], "quality": "MEDIUM",
+      "note": "Peak 2008 (~756); 2023 ~545; still ~5-10x peer OECD. Approximate.",
+      "data": { "1925": 79, "1970": 96, "1980": 139, "1990": 297, "2000": 478, "2008": 756, "2015": 601, "2020": 533, "2023": 545 }
+    },
+    "official_poverty_rate_pct": {
+      "unit": "% of population below poverty line", "source": ["source-004"], "quality": "MEDIUM",
+      "note": "Official measure. SPM 2021 ~7.8% (stimulus/CTC) vs official 11.6%; 2024 official ~12.6% (approx).",
+      "data": { "1959": 22.4, "1966": 14.7, "1973": 11.1, "1983": 15.2, "1993": 15.1, "2000": 11.3, "2010": 15.1, "2015": 13.5, "2019": 10.5, "2021": 11.6, "2023": 11.1, "2024": 12.6 }
+    },
+    "child_poverty_spm_pct": {
+      "unit": "% of children in poverty, Supplemental Poverty Measure", "source": ["source-004"], "quality": "MEDIUM",
+      "note": "2021 CTC expansion cut child poverty to record 5.2%; expiration raised it again (~12-14%). Approximate.",
+      "data": { "2009": 18.2, "2019": 12.5, "2020": 9.7, "2021": 5.2, "2022": 12.4, "2023": 13.7 }
+    },
+    "homelessness_point_in_time": {
+      "unit": "thousands (single-night count)", "source": ["source-025"], "quality": "MEDIUM",
+      "note": "HUD AHAR; undercounts; record highs 2023-2025.",
+      "data": { "2007": 647, "2010": 637, "2017": 554, "2020": 580, "2022": 582, "2023": 653, "2024": 771 }
+    },
+    "geographic_divergence_note": {
+      "unit": "qualitative", "source": ["source-001"], "quality": "MEDIUM",
+      "note": "Coastal metros + Sun Belt outperforming; Rust Belt and rural areas lagging since 1980; per-capita GDP gap between top and bottom states roughly doubled since 1980; college-educated metros pulling away."
+    }
+  }
+}

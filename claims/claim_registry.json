@@ -1,0 +1,270 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-23",
+  "note": "Claim registry. Every major conclusion in the report maps to a claim ID. Verdict vocabulary from root Section 17. Confidence: HIGH/MEDIUM/LOW. 'analyst_judgment' flags where the claim synthesizes evidence rather than citing one number. Trace: claim → sources → datasets → analyses (methodology.md) → red-team (critique/red_team/red_team_analysis.md).",
+  "claims": [
+    {
+      "id": "claim-001", "statement": "Post-WWII real GDP growth has averaged higher under Democratic than Republican presidents (≈1-2pp).",
+      "verdict": "supported", "confidence": "HIGH (correlation) / LOW-MEDIUM (causation)",
+      "sources": ["source-021", "source-022", "source-001"], "datasets": ["economic_indicators.json", "party_scorecards.json"],
+      "supporting_evidence": "Calendar-year 1948-2024: D 3.6%/yr vs R 2.7%; Wikipedia (quarterly annualized): ~4.6% vs ~2.4%. Recessions began under R presidents in 1969-70, 1973-75, 1981-82, 1990-91, 2001, 2007-09; recoveries began under D presidents (1961, 1977, 1993, 2009, 2021).",
+      "contradicting_evidence": "Sample = 37 vs 40 years; excluding crisis-start years shrinks the gap; Reagan's 1984-88 boom (4.2-7.2%/yr) and 2017-19 Trump years (2.5-3.0%) show strong R periods; Eisenhower's era had stable 2.9% growth with low inflation.",
+      "limitations": ["Business-cycle timing contaminates party attribution", "Small samples", "Global shocks (oil, COVID) not party-driven", "No counterfactual president exists"],
+      "red_team": "See task RT-1 (recession-timing hypothesis) — direction survives, magnitude does not."
+    },
+    {
+      "id": "claim-002", "statement": "Unemployment has averaged lower under Democratic presidents since 1948.",
+      "verdict": "supported", "confidence": "MEDIUM",
+      "sources": ["source-003", "source-021"], "datasets": ["economic_indicators.json"],
+      "supporting_evidence": "Calendar-year averages: D 5.5% vs R 5.8% (1948-2024); wider gaps in common citations (~1-2pp) using different windows.",
+      "contradicting_evidence": "Obama's term included 2009-11 (9-10% unemployment); Reagan's 1981-82 (10.8% peak) dragged R averages up; window choice changes the gap substantially.",
+      "limitations": ["Unemployment responds to cycles and Fed policy more than presidents", "Annual averages smooth recessions", "Labor force participation changes the denominator"],
+      "red_team": "RT-1 partially applies; verdict holds for direction only."
+    },
+    {
+      "id": "claim-003", "statement": "There is no robust partisan pattern in inflation; inflation is primarily a monetary/global phenomenon.",
+      "verdict": "mixed (blanket claims contradicted)", "confidence": "MEDIUM",
+      "sources": ["source-002", "source-029"], "datasets": ["economic_indicators.json"],
+      "supporting_evidence": "1948-2024 CPI: D 3.4%/yr vs R 3.7%/yr — no meaningful gap. 1970s inflation spanned Nixon/Ford (R) and Carter (D). 2021-22 inflation was global (all advanced economies spiked).",
+      "contradicting_evidence": "'Democrats cause inflation' is contradicted by the record; 'Republicans tame inflation' is driven by Volcker disinflation (1979-82, D-appointed Fed chair under R president) and the 2017-19 low-inflation era.",
+      "limitations": ["Inflation is dominated by Fed policy, energy shocks, and global conditions", "Nixon's 1971 controls show presidents can suppress then unleash inflation", "Small samples"],
+      "red_team": "RT-6 (2021-22 decomposition) — ARP contributed ~0.1-1.5pp per economists; supply shocks dominated."
+    },
+    {
+      "id": "claim-004", "statement": "US stock market returns have been higher under Democratic presidents (robust direction, contaminated timing).",
+      "verdict": "supported", "confidence": "HIGH (direction) / LOW (causation)",
+      "sources": ["source-021", "source-030"], "datasets": ["party_scorecards.json"],
+      "supporting_evidence": "Total return 1928-2024: D ~14.8%/yr vs R ~9.3%/yr; per-presidency price returns post-1980: Clinton +15.2, Obama +13.5, Biden +12.6 vs Reagan +13.3, Bush41 +10.5, Bush43 -6.2, Trump1 +13.3.",
+      "contradicting_evidence": "D terms began at crisis lows (2009, 2021) or post-correction (1993) — mean reversion favors the recovery party; R terms began at peaks (2001, 2017, 2025). Dividends and concentration matter. 1929-33 and 2020 crash timing skews samples.",
+      "limitations": ["Timing of term starts drives much of the gap", "Markets price expectations, not administration competence", "No causal interpretation warranted"],
+      "red_team": "RT-8 (timing artifact) — part of the gap survives, most is timing."
+    },
+    {
+      "id": "claim-005", "statement": "Wealth concentration has increased substantially since ~1980 by every measure.",
+      "verdict": "strongly supported", "confidence": "HIGH",
+      "sources": ["source-007", "source-008", "source-026"], "datasets": ["wealth_indicators.json"],
+      "supporting_evidence": "Top-1% wealth share: ~25-26% (1980, Saez-Zucman) → ~40-42% (2020s, SZ); DFA ~30% (1989) → 30.5% (2024) with mid-30s peak; SCF ~30% → ~34-35%. Bottom 50% ~2.5% (2024). Gini 0.386 (1968) → ~0.49 (2020s). Top-1% income share 10% (1980) → ~19-21%.",
+      "contradicting_evidence": "Fed DFA shows top-1% share NOT higher in 2024 than 1989 (~30.5% vs ~30%) — the DFA measure peaked mid-2010s and declined; the rise 1980-1990 was the main jump. Level disputes across measures are real (pensions, offshore).",
+      "limitations": ["Measure choice changes level and timing", "Pension valuation (defined-benefit) differences", "Offshore wealth undercounts survey measures"],
+      "red_team": "RT-2 — direction unanimous; level and timing vary by measure."
+    },
+    {
+      "id": "claim-006", "statement": "The American middle class has shrunk in relative share while improving in absolute living standards.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-014", "source-004"], "datasets": ["wealth_indicators.json", "economic_indicators.json"],
+      "supporting_evidence": "Pew: middle-income share of adults 61% (1971) → 51% (2023); share of aggregate income 62% → 43%. Absolute: real median household income $59.6k (1970) → $83.7k (2024, 2024$); real median wealth up since 1989; consumption quality improved.",
+      "contradicting_evidence": "Housing affordability at record lows (price/income ~5.7x vs ~3.3x 1970s); healthcare/education costs rose faster than incomes; median wealth volatile (2016 < 2007); income growth 1970-2015 was slow for the median (~0.3%/yr); household-size and composition changes complicate comparisons.",
+      "limitations": ["Household vs individual income", "Cost-of-living differences (CPI vs experienced inflation)", "Definitional choices (Pew band)"],
+      "red_team": "RT-7 — the 'both halves' framing survives; the absolute-improvement half is sensitive to housing/health cost adjustments."
+    },
+    {
+      "id": "claim-007", "statement": "Federal debt is on an unsustainable trajectory under current law (100% of GDP → 120% by 2036, ~175% by mid-2050s).",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-005", "source-006", "source-018"], "datasets": ["debt_indicators.json"],
+      "supporting_evidence": "CBO Feb 2026 baseline: debt held by public ~100% (FY2025) → 120% (2036); long-term outlook ~175% by 2050s. Net interest 3.2% of GDP ($970B, FY2025) doubling to ~4.6% by 2035. Deficits ~6% of GDP at full employment (structural).",
+      "contradicting_evidence": "'Unsustainable' ≠ imminent crisis; US borrows in its own currency; growth and inflation erode ratios (as 2021-24 showed); interest burden is manageable if rates fall; Japan sustains >200% debt/GDP (with different demographics and home bias).",
+      "limitations": ["Projections are baseline (current law), not forecasts", "Interest-rate and growth assumptions matter enormously", "'Unsustainable' is a judgment about the trajectory, not a precise date"],
+      "red_team": "RT-3 — decomposition: post-2001 rise ~1/3 tax cuts, ~1/3 spending (wars, COVID, entitlements), ~1/3 interest + lost growth."
+    },
+    {
+      "id": "claim-008", "statement": "Major tax cuts have not paid for themselves (CBO/JCT scored none as self-financing).",
+      "verdict": "contradicted (the self-financing claim)", "confidence": "HIGH",
+      "sources": ["source-019", "source-018", "source-005"], "datasets": ["debt_indicators.json"],
+      "supporting_evidence": "ERTA 1981, Bush 2001/03, TCJA 2017, OBBBA 2025 all scored as revenue losers (TCJA ~-$1.5T/10yr; OBBBA +$3.4T net deficits; Tax Foundation -$5.2T revenue). Post-TCJA corporate revenue fell short of pre-enactment projections despite strong growth.",
+      "contradicting_evidence": "Dynamic scoring recovers a small fraction (typically 5-30% of static cost); some studies find supply-side growth effects (TCJA capex bump 2018); 1980s revenue rose after ERTA from 1982 trough (but from recession lows; deficits still exploded).",
+      "limitations": ["Static vs dynamic scoring debates", "Revenue feedback depends on rate levels and economic conditions", "'Pay for themselves' is a strong claim no official score supports"],
+      "red_team": "RT-3 partially."
+    },
+    {
+      "id": "claim-009", "statement": "'Republicans reduce spending' is contradicted by the federal record.",
+      "verdict": "contradicted", "confidence": "HIGH",
+      "sources": ["source-017", "source-005"], "datasets": ["debt_indicators.json"],
+      "supporting_evidence": "Outlays/GDP: Reagan 21.6% (1980) → 21.2% (1988); GWB 18.2% (2000) → 24.4% (2009); Trump 21.0% (2016) → 31.2% (2020). GOP Congresses added Medicare Part D (unfunded) and OBBBA (deficit-increasing). GOP eras since 1981 all raised debt/GDP.",
+      "contradicting_evidence": "Reagan slowed non-defense discretionary growth; 1994-2000 GOP Congress pushed welfare reform and spending restraint; 'cuts' usually mean slower growth, not absolute reductions; defense increases under R presidents are spending.",
+      "limitations": ["Spending driven by wars, recessions, entitlements, and demographics", "Congress (not president) appropriates", "Definition of 'spending' (discretionary vs total)"],
+      "red_team": "None found to overturn; caveats noted."
+    },
+    {
+      "id": "claim-010", "statement": "The 2021-22 inflation spike was primarily global supply-side + energy-war shock, with US stimulus a contributing factor.",
+      "verdict": "mixed", "confidence": "MEDIUM",
+      "sources": ["source-002", "source-029"], "datasets": ["economic_indicators.json"],
+      "supporting_evidence": "Inflation spiked in all advanced economies regardless of stimulus size (Eurozone 10.6% peak, UK 11.1%); drivers: supply-chain re-opening, energy/food war shock, fiscal support globally. US core peaked ~6.6% (lower than most peers).",
+      "contradicting_evidence": "ARP ($1.9T, Mar 2021) was large relative to output gap; Blanchard, Summers et al. attributed ~0.5-1.5pp; household excess savings fueled demand; Fed 'transitory' error delayed tightening; US CPI peaked 9.1% — near peers despite lower VAT exposure.",
+      "limitations": ["Counterfactual unknown", "Attribution varies by model", "Policy debate is partisan but the evidence is mixed"],
+      "red_team": "RT-6 — verdict: ARP contributed, did not cause; 'Democrats caused inflation' contradicted as a sole explanation."
+    },
+    {
+      "id": "claim-011", "statement": "'Democrats destroy markets' is contradicted by market returns.",
+      "verdict": "contradicted", "confidence": "HIGH",
+      "sources": ["source-021", "source-030"], "datasets": ["party_scorecards.json"],
+      "supporting_evidence": "See claim-004: D administrations have the higher average returns in every major study; regulation (ACA, Dodd-Frank) did not prevent bull markets.",
+      "contradicting_evidence": "Markets are forward-looking; policy uncertainty (healthcare fights 2009-10, antitrust today) can weigh on specific sectors.",
+      "limitations": ["Correlation ≠ policy quality", "Timing effects (claim-004)"]
+    },
+    {
+      "id": "claim-012", "statement": "'Republicans cause recessions' — recessions cluster at R term starts, but causation is unproven.",
+      "verdict": "mixed", "confidence": "MEDIUM",
+      "sources": ["source-023"], "datasets": ["political_events.json", "administrations.json"],
+      "supporting_evidence": "Post-WWII recessions beginning under R presidents: 1953-54, 1957-58, 1960-61 (Eisenhower), 1969-70, 1973-75 (Nixon), 1981-82 (Reagan), 1990-91 (Bush41), 2001 (Bush43), 2007-09 (Bush43), 2020 (Trump, exogenous COVID). Under D: 1948-49 (Truman), 1980 (Carter), 2001? no — that's Bush. So 10 R-starts vs 2 D-starts.",
+      "contradicting_evidence": "Recessions are caused by Fed tightening, oil shocks, financial excess — not presidents; the 2007-09 crisis roots are 1990s-2000s bipartisan; 2020 was a pandemic; several R-era recessions (1973-75, 1990-91, 2001) were inherited dynamics; D eras' expansions (1961-68, 1993-2000, 2009-19) show D can run long booms.",
+      "limitations": ["Small sample", "Term-start timing (inauguration in Jan, recessions dated by NBER)", "Political business-cycle theories (Nordhaus) find weak support"],
+      "red_team": "RT-1 — the pattern is real; the causal story is not."
+    },
+    {
+      "id": "claim-013", "statement": "The stock market does not represent ordinary Americans' wealth: top 10% own ~90% of equities.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-007"], "datasets": ["wealth_indicators.json"],
+      "supporting_evidence": "Fed SCF/DFA: top 10% hold ~89-92% of corporate equities/mutual funds; top 1% ~50%; bottom 50% ~1%. Middle-class wealth is mostly home equity and retirement accounts, partially indexed to stocks via 401(k)s (top-half-heavy).",
+      "contradicting_evidence": "~60% of households own equities (incl. via pensions/401(k)s); 401(k) ownership broadened market exposure; market gains do flow to retirement savers, skewing to higher earners.",
+      "limitations": ["Ownership share ≠ participation rate", "Indirect ownership (pensions) complicates the picture"]
+    },
+    {
+      "id": "claim-014", "statement": "America is not becoming poorer in aggregate or at the median; it is becoming richer with skewed gains.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-004", "source-001"], "datasets": ["economic_indicators.json", "wealth_indicators.json"],
+      "supporting_evidence": "Real median household income $83.7k (2024, record); real GDP/person ~2.5x 1960 level; median wealth at/near records; poverty lower than 1960s; consumption, technology access up across classes.",
+      "contradicting_evidence": "Gains concentrated at top; median income growth was slow 1970-2015 (~0.3%/yr); housing/health/education costs ate purchasing power; median wealth for bottom half still thin; intergenerational mobility flat-to-declining.",
+      "limitations": ["Income vs wealth vs consumption", "Cost-of-living measurement", "'Becoming poorer' for specific cohorts (young adults, non-college men, rural) is real even if national aggregates rise"]
+    },
+    {
+      "id": "claim-015", "statement": "Measured freedom and democracy in the US are at multi-decade lows (FH 81, V-Dem 0.57, EIU 7.65) after declining since ~2015-16.",
+      "verdict": "supported", "confidence": "HIGH (indices) / MEDIUM (interpretation)",
+      "sources": ["source-011", "source-012", "source-013"], "datasets": ["freedom_indicators.json"],
+      "supporting_evidence": "All three independent indices register record lows for the US in 2025-26; declines accelerated 2025 (V-Dem -24% in one year; FH -3 to 81; EIU to 7.65, 34th). Sub-indicators (electoral integrity, executive constraints, media freedom) drove the decline.",
+      "contradicting_evidence": "Long-run: US is far freer than 1900-1970 (McCarthyism, segregation, no VRA); elections 2020/2022/2024 were administered and certified; courts and states checked executive actions; Polity still codes US as full democracy; index methodology is analyst-coded and may overreact to recent events.",
+      "limitations": ["Indices measure coded assessments, not objective facts", "Recency and attention bias in coding", "Definitional: political rights vs policy preferences — indices measure the former"],
+      "red_team": "RT-5 — sub-indicator consistency across three independent indices strengthens the finding; measurement critiques are valid but don't overturn direction."
+    },
+    {
+      "id": "claim-016", "statement": "US population health is good by historical standards but mediocre-to-poor relative to wealthy peers, and spending does not buy commensurate outcomes.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-009", "source-010", "source-024"], "datasets": ["health_indicators.json"],
+      "supporting_evidence": "Life expectancy 79.0 (2024, record) vs ~82-84 peers; infant mortality 5.6 vs ~3-4; maternal mortality ~19-33 vs ~3-8; obesity ~42% vs 15-25%; overdose deaths 5-10x peers; spending 18.0% of GDP vs ~10-12%.",
+      "contradicting_evidence": "US leads in cancer survival (breast/colorectal), medical innovation (drugs, devices), clinical trial access; insured Americans get high-quality acute care; life-expectancy gap partly reflects homicides, overdoses, traffic — behavioral/social, not purely system failure.",
+      "limitations": ["International comparability of mortality statistics", "Behavioral vs system determinants", "Aging composition"],
+      "red_team": "RT-4 — the gap is partly measurement/behavioral, but excess deaths in middle age (deaths of despair) are real and growing pre-2019."
+    },
+    {
+      "id": "claim-017", "statement": "Crime fell to multi-decade lows in 2024-25 after the 2020-21 pandemic spike.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-015"], "datasets": ["social_indicators.json"],
+      "supporting_evidence": "FBI 2024: violent crime -4.5% (359.1/100k, lowest since ~1970), murder -14.9% (~5.0/100k, lowest since 2015); 2025 preliminary: violent crime -9.3%, murder -18.1% (near 75-year low). Homicide fell from 7.8 (2020-21) to ~4-5 (2024-25).",
+      "contradicting_evidence": "Post-2021 FBI data transition (NIBRS) weakens comparability; 2020-21 spike showed fragility; property crime rose somewhat in 2022-23; city-level variation large.",
+      "limitations": ["Reporting changes 2021+", "Murder vs violent crime trends differ", "Local policies drive most crime outcomes"]
+    },
+    {
+      "id": "claim-018", "statement": "Political polarization and institutional distrust are at or near record highs.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-014", "source-028"], "datasets": ["freedom_indicators.json", "social_indicators.json"],
+      "supporting_evidence": "Pew 10-item values gap: 15pp (1994) → ~39pp (2022); affective polarization at records; trust in government ~16-24% (vs 77% 1964); Congress approval ~15-30%; conspiracy beliefs and election denial widespread post-2020.",
+      "contradicting_evidence": "Trust fell after Vietnam/Watergate too (1970s ~30-40%); polarization was higher in the 1850s (Civil War era); surveys show most Americans share moderate positions on many issues (elite polarization > mass polarization).",
+      "limitations": ["Elite vs mass polarization distinction", "Trust measures conflate policy disagreement with institutional failure", "Media environment effects"]
+    },
+    {
+      "id": "claim-019", "statement": "The 2008 financial crisis was the product of 15+ years of bipartisan policy, private excess, and global imbalances — not one party or president.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-017", "source-023"], "datasets": ["financial_crises.json", "political_events.json"],
+      "supporting_evidence": "Deregulation: GLB 1999 (Clinton), CFMA 2000 (Clinton), SEC 2004 leverage rule (Bush), GSE push (Clinton+Bush), OCC preemption (Bush); low rates 2001-04 (Greenspan Fed); bipartisan housing goals; private sector securitization excess; global savings glut.",
+      "contradicting_evidence": "Post-hoc attributions vary; some analyses emphasize Clinton-era deregulation, others Bush-era policies; the Fed's role is independent of party.",
+      "limitations": ["Causal chain long and contested", "Regulation vs supervision distinction"],
+      "red_team": "RT-1 partially; no single-party verdict is supported."
+    },
+    {
+      "id": "claim-020", "statement": "The modern debt era (1981-present) is a bipartisan failure: GOP tax cuts and defense, D spending expansions, and both parties' wars and crisis responses.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-005", "source-017", "source-018"], "datasets": ["debt_indicators.json"],
+      "supporting_evidence": "Every R administration since 1981 raised debt/GDP; Obama's rise was mostly inherited crisis years (2009-11); Biden's was flat as % of GDP despite big bills; the Clinton 1990s show consolidation is possible when taxes raised + growth + peace dividend; structural drivers (entitlements, interest) now dominate.",
+      "contradicting_evidence": "D administrations spent more on entitlements/transfers; Biden-era deficits ~6% of GDP at full employment were still large; both parties defend their own spending.",
+      "limitations": ["Attribution requires counterfactuals", "Crisis spending (2009, 2020) was justified by many economists"],
+      "red_team": "RT-3 decomposition supports 'bipartisan' label."
+    },
+    {
+      "id": "claim-021", "statement": "US fiscal capacity to respond to the next crisis is thinner than in 2008 or 2020 (debt ~100% of GDP, interest 3.2% of GDP, deficits 6% at full employment).",
+      "verdict": "supported", "confidence": "MEDIUM",
+      "sources": ["source-005", "source-018"], "datasets": ["debt_indicators.json", "financial_crises.json"],
+      "supporting_evidence": "Debt/GDP: 40% (2008), 80% (2020), ~100% (2026); deficits structural at full employment; interest burden 3.2% and rising; debt servicing now exceeds defense spending.",
+      "contradicting_evidence": "US still borrows at ~4% 10-yr yields; dollar reserve status; markets not yet pricing default risk; Japan analog (200%+ debt, low rates) shows high debt can persist.",
+      "limitations": ["Fiscal space is a judgment, not a number", "Depends on rates vs growth (r-g)", "Political willingness is the binding constraint"]
+    },
+    {
+      "id": "claim-022", "statement": "Financial fragility is structurally higher than in 2000 or 2007 on valuation metrics (CAPE ~41, Aug 2026 — second-highest ever) and leverage, though bank balance sheets are stronger.",
+      "verdict": "mixed (supported on valuations; stronger banks offset)", "confidence": "MEDIUM",
+      "sources": ["source-020", "source-007"], "datasets": ["financial_crises.json"],
+      "supporting_evidence": "CAPE ~40.5-41.6 (Jul-Aug 2026) vs median ~16-17, record 44.2 (1999); AI/tech concentration (~35% of S&P in mega-caps); corporate debt near records; private credit ~$2T+ unregulated; commercial real estate stress; housing unaffordable; federal debt 100% of GDP.",
+      "contradicting_evidence": "Banks hold ~2x capital vs 2007; household leverage moderate (DTI near 2007 but with higher quality); corporate interest coverage OK; earnings growth strong; 'CAPE is broken' critiques (low rates justify higher multiples); 2023 regional crisis contained quickly.",
+      "limitations": ["Valuation metrics are poor timing tools", "Fragility ≠ imminent crash", "Regulatory state differs from 2007"],
+      "red_team": "RT (valuation critique) — CAPE high does not predict timing; but historically, 10-year forward returns are low when CAPE > 40 (avg ~3%/yr)."
+    },
+    {
+      "id": "claim-023", "statement": "The Trump II administration (2025-) is too early to evaluate on most outcomes, but observable first-19-months data show: solid-but-slowing growth, low-but-rising unemployment, sticky inflation, record deficits, record-low democracy-index scores, and record-high valuations.",
+      "verdict": "supported (observed); forecasts flagged", "confidence": "HIGH (observed data) / LOW (verdicts)",
+      "sources": ["source-001", "source-005", "source-012", "source-011", "source-013", "source-020"], "datasets": ["administrations.json"],
+      "supporting_evidence": "Verified: GDP +2.1% (2025), Q2 2026 +1.5% advance; unemployment 4.1% (Jul 2026); CPI ~2.8-2.9% (2025); FY2025 deficit $1.8T (5.8% of GDP); net interest $970B; OBBBA +$3.4T (CBO); V-Dem 0.57; FH 81; EIU 7.65; CAPE ~41.",
+      "contradicting_evidence": "Counterfactual unknown; some 2025-26 trends (homicide near 75-year low; wage growth outpacing inflation for lower earners) are positive; inflation easing toward target; equity earnings growth strong.",
+      "limitations": ["Incomplete period — all verdicts preliminary", "Policy effects lag", "Economic data revised"],
+      "red_team": "Flagged: administration claims (tariff revenue, debt reduction, 'greatest economy') checked against CBO/Treasury data in report Section 18."
+    },
+    {
+      "id": "claim-024", "statement": "Reagan's 1980s boom does not demonstrate that tax cuts self-finance; it reflects Volcker disinflation, recovery from the 1981-82 recession, defense spending, and demographic tailwinds.",
+      "verdict": "mixed", "confidence": "MEDIUM",
+      "sources": ["source-017", "source-022"], "datasets": ["administrations.json", "debt_indicators.json"],
+      "supporting_evidence": "Revenue/GDP fell from 19.0% (1981) to ~18% (1988) despite recovery; debt/GDP rose 26%→39%; deficits peaked 6% of GDP; growth 1983-88 (~4.5%/yr) was strong but from a deep trough.",
+      "contradicting_evidence": "Supply-side growth (labor supply, hours) was real; 1986 TRA broadened the base; the 1980s tax code changes had genuine incentive effects; corporate revenue rose late-1980s.",
+      "limitations": ["Causal attribution across a complex decade", "Counterfactual Reagan without tax cuts unknown"],
+      "red_team": "RT — 'ERTA paid for itself' contradicts OMB revenue data."
+    },
+    {
+      "id": "claim-025", "statement": "Healthcare is the dominant long-run fiscal and cost-of-living problem, and neither party has solved it.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-010", "source-024"], "datasets": ["health_indicators.json", "debt_indicators.json"],
+      "supporting_evidence": "18.0% of GDP ($5.3T, 2024) vs ~5% (1960); Medicare/Medicaid ~$1.6T federal; CBO: healthcare the largest driver of long-run debt; premiums, drug prices, and out-of-pocket costs grew faster than wages for decades; uninsured ~8% despite ACA.",
+      "contradicting_evidence": "ACA and IRA drug pricing (both D-led) bent some cost curves; per-capita growth slowed post-2010; Medicare payment reforms (ACA-era) slowed spending growth.",
+      "limitations": ["System financing is decentralized", "International comparisons confounded by income and demographics"],
+      "red_team": "None found to overturn; both parties' attempts (ACA, repeal attempts, Part D) show the system's political resilience."
+    },
+    {
+      "id": "claim-026", "statement": "Incarceration at 5-10x peer rates is a bipartisan legacy of 1970s-1990s crime politics, now slowly unwinding.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-016"], "datasets": ["social_indicators.json"],
+      "supporting_evidence": "Rate 96 (1970) → 756 (2008) → ~545 (2023); both parties enacted mandatory minimums, three-strikes (1994 crime bill D-led; 1980s sentencing laws R-led); First Step Act (2018, bipartisan) and state reforms (both parties) drove the decline since 2008.",
+      "contradicting_evidence": "Crime fell while incarceration rose (1990s) — evidence that incapacitation contributed modestly or was inefficient; racial disparities persist.",
+      "limitations": ["Federal vs state drivers", "Crime decline multi-causal"]
+    },
+    {
+      "id": "claim-027", "statement": "Deaths of despair (drugs, alcohol, suicide) stalled US life-expectancy progress 2010-2019 and remain the key differentiator vs peers.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-009"], "datasets": ["health_indicators.json"],
+      "supporting_evidence": "Life expectancy flat 2010-2019 (78.7→78.8) while peers gained; overdose deaths 47k (2014) → 70k (2017) → 112k (2023); suicide up ~30% 2000-2018; midlife mortality rises for non-college whites; COVID then added a ~2.4-year drop 2019-2021, partially recovered by 2024 (79.0).",
+      "contradicting_evidence": "Overdose deaths declining 2024-25 (fentanyl wave cresting, naloxone); suicide down from 2018 peak; 2024 life expectancy at record.",
+      "limitations": ["Causal drivers (pain, opioids, economic dislocation, social isolation) contested", "International comparability of cause-of-death coding"],
+      "red_team": "RT-4 — behavioral causes confirmed as primary (Case-Deaton)."
+    },
+    {
+      "id": "claim-028", "statement": "Housing affordability is at multi-decade worst, driven by supply constraints (local zoning) more than federal policy, with both parties' national policies contributing via credit subsidies.",
+      "verdict": "supported", "confidence": "MEDIUM",
+      "sources": ["source-004"], "datasets": ["economic_indicators.json"],
+      "supporting_evidence": "Price/income ratio ~5.7x (2024) vs ~3.3-4.0 (1970s-90s); mortgage rates 6-7% (2023-26) vs 3% (2021); homeownership near 66% but first-time buyer share at lows; construction shortfall ~1.5-3.8M units; zoning/permitting restrict supply; NIMBY is local and bipartisan.",
+      "contradicting_evidence": "2020-22 house-price surge was partly demand (remote work, stimulus, low rates); federal programs (LIHTC, vouchers, FHA) help; some metros (Austin, Phoenix) added supply and cooled prices.",
+      "limitations": ["Local variation huge", "Supply estimates contested", "Affordability metrics (price vs payment) differ"],
+      "red_team": "RT — 'federal policy caused it' is too simple; zoning is the binding constraint in high-cost metros."
+    },
+    {
+      "id": "claim-029", "statement": "The 2020-21 fiscal response prevented depression-level outcomes but contributed to inflation; the 2021 CTC expansion showed child poverty is a policy choice, and its expiration reversed most gains.",
+      "verdict": "supported", "confidence": "HIGH",
+      "sources": ["source-004", "source-018"], "datasets": ["social_indicators.json"],
+      "supporting_evidence": "Real median income rose in 2020 (transfers); child poverty SPM fell to 5.2% (2021, record) then ~12-14% (2022-23) after CTC expiration; GDP fell 2.8% (2020) not 20-30%; inflation 2021-22 (see claim-010).",
+      "contradicting_evidence": "ARP size debated; some economists favored smaller/means-tested; CTC expiration was a policy choice with measurable consequences.",
+      "limitations": ["Counterfactuals", "SPM vs official measures"],
+      "red_team": "RT-6."
+    },
+    {
+      "id": "claim-030", "statement": "James Buchanan was historically rated the worst US president in scholar surveys for decades; recent polls (APSA 2024) put Trump at the very bottom, with Buchanan next. These rankings are subjective expert judgment, not economic data.",
+      "verdict": "supported", "confidence": "MEDIUM (subjective rankings)",
+      "sources": ["source-031", "source-032"], "datasets": ["administrations.json"],
+      "supporting_evidence": "C-SPAN 2021: Buchanan 44th of 44 (last); Siena 2022: Buchanan 44th of 45; APSA 2024: Buchanan 44th, Trump 45th (last, 10.9/100). Buchanan's low rank is driven by secession-crisis inaction (Dred Scott, secession winter), not economics.",
+      "contradicting_evidence": "Siena 2022 ranked Andrew Johnson last (Buchanan 44th); rankings vary by poll and panel; some surveys rank other presidents lower; 'greatness' is a normative construct.",
+      "limitations": ["Subjective expert judgment", "Panels skew academic/partisan", "Rankings are not economic measures"],
+      "red_team": "RT — 'worst president' is a normative claim; the only defensible empirical statement is that Buchanan placed last in the most-cited surveys until Trump."
+    }
+  ]
+}

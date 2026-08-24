@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-23",
+  "note": "Party scorecards, post-WWII (calendar years 1948-2024, party of sitting president). Computation documented: annual averages by party-of-year from data/normalized/economic_indicators.json; S&P price returns from administration start/end index levels (Jan-Jan). CAUTION: sample = 37 Democratic years vs 40 Republican years; recessions cluster at Republican term starts (1969-70, 1973-75, 1981-82, 1990-91, 2001, 2007-09) and recoveries at Democratic starts — party attribution is contaminated by business-cycle timing. Do not read these as causal effects (root Sections 2, 10, 12).",
+  "metrics": {
+    "real_gdp_growth": {
+      "unit": "%/yr avg", "democratic": { "mean": 3.64, "median": 3.3, "best": "1965-66 (6.5-6.6)", "worst": "2009 (-2.5)" }, "republican": { "mean": 2.66, "median": 3.1, "best": "1984 (7.2)", "worst": "1982 (-1.8)" },
+      "note": "Wikipedia (quarterly annualized, 1947-2023): D ~4.6% vs R ~2.4% (gap ~1.8-2.2pp). Calendar-year computation here: D 3.6% vs R 2.7%. Gap shrinks when crisis-start years are excluded; direction robust."
+    },
+    "unemployment": {
+      "unit": "% avg", "democratic": { "mean": 5.5, "median": 5.3 }, "republican": { "mean": 5.8, "median": 5.5 },
+      "note": "Direction robust (D lower), magnitude window-sensitive; some analyses (excluding 2009-11) show ~1-2pp gaps."
+    },
+    "cpi_inflation": {
+      "unit": "%/yr avg", "democratic": { "mean": 3.39, "median": 2.9 }, "republican": { "mean": 3.67, "median": 3.2 },
+      "note": "No robust party pattern. The 1970s inflation spanned Nixon/Ford (R) and Carter (D); 2021-22 spanned Biden (D). Post-1980: D 2.6% vs R 3.5% (driven by 1980s disinflation-era deficits under Reagan and low-inflation Obama years). Inflation is primarily a Fed/global phenomenon."
+    },
+    "debt_gdp_public_change": {
+      "unit": "pp change in debt held by public / GDP over term", "note": "Reagan +13, Bush41 +8, Clinton -14.5, Bush43 +20, Obama +24 (mostly crisis years 2009-11), Trump1 +23, Biden ~0 (flat as % of GDP). Both parties increased debt; only Clinton reduced it materially (1993 tax increase + growth + peace dividend).",
+      "democratic": { "mean_pp": "+2 (Clinton -14.5, Obama +24, Biden 0, Carter -1, Truman -37, Johnson -14)", "note": "Truman/Johnson/Clinton eras reduced debt/GDP via growth + surpluses" },
+      "republican": { "mean_pp": "+13 (Eisenhower -5, Reagan +13, Bush41 +8, Bush43 +20, Trump1 +23)", "note": "Every GOP era since 1981 raised debt/GDP" }
+    },
+    "sp500_price_return": {
+      "unit": "%/yr annualized, Jan-to-Jan price return", "note": "D: Clinton +15.2, Obama +13.5, Biden +12.6 → avg ~13.8%. R: Reagan +13.3, Bush41 +10.5, Bush43 -6.2, Trump1 +13.3 → avg ~7.7%. Total-return studies (1928-2024): D ~14.8%/yr vs R ~9.3%/yr (median D 12.9% vs R 9.9%). Timing caveat: D terms began at crisis lows (2009, 2021) or after midterm corrections; dividends widen the D edge; concentration effects.",
+      "democratic": { "mean": 13.8 }, "republican": { "mean": 7.7 }
+    },
+    "poverty_change": {
+      "unit": "pp change in official poverty rate over term", "note": "Big drops: Johnson (19.0→12.1), Clinton (15.1→11.3), early-2000s flat, Obama (12.5→12.7 net flat, trough 10.5 in 2019 post-term), Trump (12.3→11.4? COVID transfers lowered 2020 SPM; official 2020 11.4, 2021 11.6), Biden (11.6→11.1 2023, then 12.6 2024 as pandemic aid expired). D eras dominate the large reductions (1960s, 1990s, 2021 CTC experiment).",
+      "note2": "Analyst judgment: the largest poverty reductions in modern history occurred under Democratic administrations via pro-poor transfer/tax policy; the 1996 welfare reform (bipartisan, signed by Clinton) is credited with caseload reduction but had contested deep-poverty effects."
+    },
+    "life_expectancy_change": {
+      "unit": "years change per term (approx)", "note": "Long-run improvement ~0.15-0.25 yrs/yr through 2010 under both parties; stagnation 2011-2019 (deaths of despair) under Obama/Trump; COVID crash (2020-21) under Trump; recovery (2022-24) under Biden. Party differences are noise relative to the long-run trend and COVID shock."
+    },
+    "freedom_indices_change": {
+      "unit": "qualitative", "note": "FH/V-Dem/EIU declines registered 2016-2026 across administrations of both parties (Trump 2017-2021: FH 94→83, V-Dem 0.79→0.72; Biden 2021-25: FH 83→83, V-Dem 0.72→0.75→0.57 in 2025; Trump II 2025-26: FH 83→81, V-Dem 0.75→0.57, EIU 7.85→7.65). The sharpest single-year declines (2025) occurred under Trump II; the 2016-2021 decline occurred under Trump I; longer-run erosion (money in politics, polarization, trust) is bipartisan and structural."
+    }
+  },
+  "verdicts": {
+    "republican_edges": [
+      "Inflation control post-1980 (completed via Volcker disinflation; Reagan-era policy acceptance of tight money)",
+      "Deregulation of transportation/energy (bipartisan origin; airline/trucking deregulation broadly judged welfare-positive)",
+      "Welfare reform 1996 (bipartisan; GOP-driven)",
+      "1986 tax reform (bipartisan; GOP-driven base-broadening)",
+      "Crime decline sustained through GOP eras (1990s-2010s — mostly state/local + demographics, not federal policy)",
+      "Cold War conclusion and defense posture (bipartisan, GOP-led)",
+      "Lower taxes on capital and business (their stated priority — delivered consistently)"
+    ],
+    "democratic_edges": [
+      "Higher average GDP growth and lower unemployment since WWII (timing-contaminated but robust in direction)",
+      "Stock market returns (robust in direction, timing-contaminated)",
+      "Poverty reduction via transfers and tax credits (1960s, 1990s, 2021 CTC)",
+      "Healthcare expansion (Medicare/Medicaid 1965, ACA 2010, IRA drug pricing 2022)",
+      "Fiscal consolidation when attempted (1993 deficit-reduction; 2010-15 deficit halving; Biden 2021-24 deficit reduction from crisis levels)",
+      "Financial regulation post-2008 (Dodd-Frank; bank capital; CFPB)",
+      "Civil rights and voting rights legislation (1964-65) and its enforcement legacy"
+    ],
+    "bipartisan_failures": [
+      "Federal debt accumulation since 1981 (R tax cuts + D spending + both parties' wars and crises)",
+      "Healthcare cost inflation (18% of GDP; both parties defended the system's rent-seeking while tinkering at the edges)",
+      "Housing affordability (both parties' land-use/subsidy/credit policies; NIMBY at local level)",
+      "Money in politics (Citizens United era; both parties benefit from and defend it)",
+      "Incarceration expansion 1980-2008 (both parties' crime politics; 1994 crime bill and 1980s-90s sentencing laws)",
+      "Opioid epidemic response (slow bipartisan reaction to prescription opioids; Purdue prosecutions late)",
+      "Financial deregulation pre-2008 (GLB 1999, CFMA 2000, GSE push, SEC 2004 — bipartisan)",
+      "Democracy erosion enablers (gerrymandering, primaries, polarization, executive power accumulation by both parties)",
+      "Tax complexity and corporate tax avoidance (both parties' loophole maintenance)",
+      "Failure to address entitlement solvency (Social Security/Medicare reform kicked down the road for 30+ years)"
+    ],
+    "structural_factors_independent_of_party": [
+      "Demographics: aging population → entitlement spending growth and slower potential growth",
+      "Healthcare cost growth is the single largest fiscal driver (system structure, not one party)",
+      "Technology and automation (labor share of income fell 2000-2015)",
+      "Globalization and import competition (manufacturing employment decline)",
+      "Financialization and rising asset values (Fed policy + global savings glut)",
+      "Interest-rate normalization after 2021 (debt burden rise is mechanical)",
+      "Climate and energy transition costs",
+      "Geographic divergence (coastal/sunbelt vs interior)",
+      "COVID-19 and its fiscal/inflation aftershocks"
+    ]
+  }
+}

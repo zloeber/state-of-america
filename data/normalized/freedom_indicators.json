@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-23",
+  "note": "Freedom and democracy indicators. WHAT IS MEASURED: these indices score political rights and civil liberties (electoral integrity, freedom of expression/assembly, rule of law, constraints on executive, judicial independence) as coded by analysts — NOT policy preferences. Longer-term context: the US mid-20th century scored poorly on some dimensions (McCarthyism, segregation, disenfranchisement); the modern decline is measured from ~2015-16 bases that were already high. 2025 values (FH 81, V-Dem 0.57, EIU 7.65) verified and are record lows for each series.",
+  "series": {
+    "freedom_house_score": {
+      "unit": "0-100 (higher = freer)", "source": ["source-011"], "quality": "HIGH",
+      "note": "US ~94 in 2010s; dropped to 83 (2021-2025 reports); 81 in 2026 report (covering 2025) — sharpest decline of any 'Free' country in the 2026 edition. Status remains 'Free'. 2026 values verified; historical ~approximate.",
+      "data": { "1990": 95, "2000": 94, "2010": 94, "2016": 94, "2021": 83, "2023": 83, "2025": 83, "2026": 81 }
+    },
+    "vdem_liberal_democracy_index": {
+      "unit": "0-1 (higher = more liberal democracy)", "source": ["source-012"], "quality": "HIGH",
+      "note": "US 0.75 (2024) → 0.57 (2025): -24% in one year, lowest since 1965, ranked 51st (V-Dem v16, Democracy Report 2026). Recent values verified; older approximate.",
+      "data": { "1900": 0.62, "1920": 0.67, "1940": 0.76, "1950": 0.79, "1965": 0.74, "1975": 0.80, "1990": 0.78, "2000": 0.79, "2010": 0.81, "2016": 0.79, "2020": 0.75, "2023": 0.71, "2024": 0.75, "2025": 0.57 }
+    },
+    "eiu_democracy_index": {
+      "unit": "0-10 (higher = more democratic)", "source": ["source-013"], "quality": "HIGH",
+      "note": "US 7.65 (2025), ranked 34th, 'flawed democracy' — lowest since index began (2006). 2025 verified; older approximate.",
+      "data": { "2006": 8.22, "2010": 8.18, "2015": 8.16, "2016": 7.98, "2018": 7.96, "2020": 7.92, "2022": 7.85, "2024": 7.85, "2025": 7.65 }
+    },
+    "polity2_score": {
+      "unit": "-10 to +10", "source": ["source-027"], "quality": "MEDIUM",
+      "note": "US scored 10 (full democracy) continuously in the modern era (Polity5 ends 2018). Less sensitive than V-Dem/EIU to recent erosion.",
+      "data": { "1900": 6, "1920": 10, "1950": 10, "1975": 10, "2000": 10, "2018": 10 }
+    },
+    "trust_in_federal_government_pct": {
+      "unit": "% trusting government 'to do what is right' most of the time (PEW/Gallup)", "source": ["source-028"], "quality": "MEDIUM",
+      "note": "1964 peak ~77%; modern era ~16-24% (2015-2024). Approximate benchmark values.",
+      "data": { "1958": 73, "1964": 77, "1976": 33, "1980": 27, "1994": 19, "2001": 57, "2008": 30, "2015": 19, "2019": 17, "2021": 24, "2023": 16 }
+    },
+    "partisan_polarization_gap": {
+      "unit": "pp gap between R and D on Pew's 10-item values battery", "source": ["source-014"], "quality": "MEDIUM",
+      "note": "Pew political typology; approximate values.",
+      "data": { "1994": 15, "2004": 26, "2014": 36, "2017": 36, "2022": 39 }
+    },
+    "congressional_approval_pct": {
+      "unit": "% approving of Congress (Gallup)", "source": ["source-028"], "quality": "MEDIUM",
+      "note": "Chronic ~15-30% since 2010; record low ~9-10% (2013 shutdown era). Approximate.",
+      "data": { "1980": 35, "1990": 41, "2001": 62, "2010": 25, "2013": 15, "2020": 24, "2024": 18 }
+    },
+    "political_violence_qualitative": {
+      "unit": "qualitative", "source": ["source-028", "source-015"], "quality": "MEDIUM",
+      "note": "January 6, 2021 Capitol attack; assassination attempts (Trump 2024; Reagan 1981); threats against officials at record highs; violence against school boards/election workers post-2020. Post-WWII US has low organized political violence vs most democracies, but the 2020-2024 period shows elevated anti-institutional violence and threats relative to the 2000-2015 baseline."
+    }
+  }
+}

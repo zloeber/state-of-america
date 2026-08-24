@@ -1,0 +1,61 @@
+{
+  "manifest_version": "1.0.0",
+  "project": "THE STATE OF AMERICA",
+  "generated": "2026-08-23",
+  "research_date": "2026-08-23",
+  "root_prompt": {
+    "path": "prompts/000_root_prompt.md",
+    "sha256": "3de64547180bb2a25472a8bbd167f68ea0199a5c4efb33c23c233986cc0f902f",
+    "preserved": "verbatim"
+  },
+  "prompts": [
+    { "id": "prompt-000", "path": "prompts/000_root_prompt.md", "version": "000", "role": "root" },
+    { "id": "prompt-001", "path": "prompts/001_research_decomposition.md", "version": "001", "role": "research strategy" },
+    { "id": "prompt-002", "path": "prompts/002_domain_agent_prompts.md", "version": "002", "role": "domain agents" },
+    { "id": "prompt-003", "path": "prompts/003_verification_and_red_team_prompts.md", "version": "003", "role": "verification & red team" },
+    { "id": "prompt-004", "path": "prompts/004_synthesis_and_publication_prompts.md", "version": "004", "role": "synthesis & publication" }
+  ],
+  "agents": {
+    "registry": "agents/agent_registry.yaml",
+    "graph": "agents/execution_graph.json",
+    "note": "Single-agent execution (buffy). Model metadata UNKNOWN per root Section 23; no model metadata fabricated."
+  },
+  "sources": { "registry": "sources/source_registry.json", "count": 32, "note": "source-001..source-032; each with type, quality, scope, period, verification status" },
+  "datasets": {
+    "normalized": [
+      "data/normalized/administrations.json",
+      "data/normalized/four_year_periods.json",
+      "data/normalized/economic_indicators.json",
+      "data/normalized/wealth_indicators.json",
+      "data/normalized/health_indicators.json",
+      "data/normalized/debt_indicators.json",
+      "data/normalized/freedom_indicators.json",
+      "data/normalized/social_indicators.json",
+      "data/normalized/financial_crises.json",
+      "data/normalized/political_events.json"
+    ],
+    "derived": [
+      "data/derived/party_scorecards.json",
+      "data/derived/composite_index.json"
+    ]
+  },
+  "claims": { "registry": "claims/claim_registry.json", "count": 30, "ids": "claim-001..claim-030" },
+  "analysis": {
+    "methodology": "analysis/methodology.md",
+    "causal_analysis": "analysis/causal_analysis.md"
+  },
+  "critique": { "red_team": "critique/red_team/red_team_analysis.md", "tasks": 10, "status": "no headline conclusion overturned; several weakened and refined" },
+  "publications": {
+    "report": { "path": "report/THE_STATE_OF_AMERICA.md", "version": "1.0.0", "lines": 813 },
+    "presentation": { "path": "presentation/index.html", "version": "1.0.0", "slides": 20 },
+    "explorer": { "path": "explorer/index.html", "version": "1.0.0" }
+  },
+  "verification_summary": {
+    "note": "Headline figures verified via web search on 2026-08-23 against primary sources: BEA (2025 GDP +2.1%), BLS (unemployment 4.1% Jul 2026), Census (median household income 2024 $83,730), CBO (debt ~100% of GDP FY2025, 120% by 2036; OBBBA +$3.4T), Treasury (FY2025 deficit $1.8T; net interest $970B), Fed DFA (top 1% ~30.5% Q1 2024), CDC (life expectancy 79.0 in 2024), CMS (healthcare 18.0% of GDP 2024), FBI (2024 murder -14.9%, violent crime -4.5%), Freedom House (US 81 in 2026 report), V-Dem (0.57 in 2025), EIU (7.65 in 2025), Shiller CAPE (~41, Aug 2026). Other series carry MEDIUM/LOW confidence flags and are reproduced from standard primary series with sources listed."
+  },
+  "integrity": {
+    "principle": "No final claim without traceable lineage to evidence; no generated artifact without lineage to prompts, models, data, and transformations (root Section 47).",
+    "model_metadata": "UNKNOWN — recorded honestly, never fabricated.",
+    "raw_data": "No raw files modified in place; transformations documented in analysis/methodology.md."
+  }
+}

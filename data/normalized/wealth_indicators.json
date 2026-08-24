@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-23",
+  "note": "Wealth and income distribution. CRITICAL MEASUREMENT NOTE: top-1% wealth-share levels differ across measures. Fed DFA (quarterly, includes all assets net of pensions differently) shows top 1% ~30% (1989) → ~30.5% (Q1 2024), with a mid-30s peak ~2015-16. Saez-Zucman (capitalized income/estate method, includes offshore) shows ~25-26% (1980) → ~40-42% (2020s). SCF (survey) ~30% (1989) → ~34-35% (2022). The DIRECTION of change since ~1980 is unanimous across all measures; the level and the timing differ. Report ranges, never a single false-precise number.",
+  "series": {
+    "top1_wealth_share_pct": {
+      "unit": "% of household net worth", "quality": "HIGH",
+      "note": "Ranges across measures; see header note. 1989/2024 DFA values verified.",
+      "by_measure": {
+        "fed_dfa": { "source": ["source-007"], "data": { "1989": 30.0, "1995": 33.2, "2000": 31.8, "2005": 33.8, "2010": 35.2, "2015": 37.6, "2019": 35.0, "2024": 30.5 }, "note": "Quarterly; values at year-end approx; Q1 2024 = 30.5% verified. Top 0.1% ~14.5% (2025)." },
+        "saez_zucman": { "source": ["source-008", "source-026"], "data": { "1978": 25.4, "1980": 25.6, "1990": 29.5, "2000": 33.0, "2010": 38.0, "2019": 40.5, "2023": 41.8 }, "note": "Capitalized-income method; approximate benchmark values from published series." },
+        "scf": { "source": ["source-007"], "data": { "1989": 30.1, "1998": 33.9, "2007": 34.6, "2016": 38.5, "2019": 37.1, "2022": 34.6 }, "note": "Survey of Consumer Finances triennial; approximate." }
+      }
+    },
+    "bottom50_wealth_share_pct": {
+      "unit": "% of household net worth", "quality": "HIGH",
+      "note": "Verified: ~2.5% (Fed DFA Q1 2024).",
+      "data": { "1989": 3.5, "2000": 3.0, "2010": 3.2, "2020": 3.0, "2024": 2.5 }
+    },
+    "top1_income_share_pct": {
+      "unit": "% of pre-tax income (incl. capital gains)", "source": ["source-008", "source-026"], "quality": "MEDIUM",
+      "note": "Piketty-Saez-Zucman series, approximate benchmarks; excl. transfers. 1980 trough ~10-11% → ~19-21% recent.",
+      "data": { "1960": 10.5, "1970": 10.5, "1980": 10.0, "1990": 14.5, "2000": 17.5, "2007": 19.5, "2015": 20.0, "2021": 19.6 }
+    },
+    "gini_household_income": {
+      "unit": "Census Gini index (0-1)", "source": ["source-004"], "quality": "MEDIUM",
+      "note": "Census CPS ASEC money income; approx values; 2021 near record (0.494).",
+      "data": { "1968": 0.386, "1975": 0.397, "1980": 0.403, "1990": 0.428, "2000": 0.462, "2007": 0.463, "2010": 0.470, "2015": 0.479, "2019": 0.485, "2021": 0.494, "2022": 0.488, "2023": 0.486 }
+    },
+    "middle_class_share": {
+      "unit": "% of adults in middle-income households", "source": ["source-014"], "quality": "HIGH",
+      "note": "Pew definition: 2/3 to 2x median household income. 1971 and 2023 verified; 2021 value from Pew 2022 report.",
+      "data": { "1971": 61, "1981": 59, "1991": 56, "2001": 54, "2011": 51, "2021": 50, "2023": 51 }
+    },
+    "middle_class_income_share": {
+      "unit": "% of aggregate household income going to middle-income households", "source": ["source-014"], "quality": "MEDIUM",
+      "note": "Pew; verified 1971→2023 direction (62%→43%); intermediate approximate.",
+      "data": { "1971": 62, "1981": 58, "1991": 55, "2001": 50, "2011": 46, "2023": 43 }
+    },
+    "union_density_pct": {
+      "unit": "% of wage & salary workers unionized", "source": ["source-003"], "quality": "MEDIUM",
+      "note": "BLS; 1983 first year of current series; ~10% recent. Private-sector density ~6%.",
+      "data": { "1983": 20.1, "1990": 16.1, "2000": 13.5, "2010": 11.9, "2020": 10.8, "2024": 9.9 }
+    },
+    "stock_ownership_concentration": {
+      "unit": "% of corporate equities & mutual funds held", "source": ["source-007"], "quality": "MEDIUM",
+      "note": "Fed SCF/DFA: top 10% hold ~89-92% of directly+indirectly held equities; top 1% ~50%. Widely cited (inequality.org).",
+      "data": { "top1": 50, "top10": 90 }
+    },
+    "median_wealth_usd": {
+      "unit": "2024$ thousands, net worth", "source": ["source-007"], "quality": "MEDIUM",
+      "note": "Approximate (SCF/DFA). Median wealth rose sharply 2019-2021 (home equity + asset appreciation + savings) then roughly flat.",
+      "data": { "1989": 82, "1998": 110, "2007": 139, "2016": 97, "2019": 112, "2021": 166, "2023": 163 }
+    },
+    "homeownership_pct": {
+      "unit": "% of households", "source": ["source-004"], "quality": "MEDIUM",
+      "note": "Census HVS; 2004-2006 bubble peak; post-2008 trough; recent ~65-66%.",
+      "data": { "1960": 61.9, "1970": 62.9, "1980": 64.4, "1990": 63.9, "2000": 66.2, "2006": 68.9, "2010": 66.9, "2016": 63.4, "2020": 65.5, "2024": 65.6 }
+    }
+  }
+}
