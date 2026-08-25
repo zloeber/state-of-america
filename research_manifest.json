@@ -50,6 +50,10 @@
     "presentation": { "path": "presentation/index.html", "version": "1.0.0", "slides": 20 },
     "explorer": { "path": "explorer/index.html", "version": "1.0.0" }
   },
+  "deployment": {
+    "github_pages": { "path": ".github/workflows/deploy.yml", "version": "1.0.0", "note": "GitHub Actions workflow; deploys explorer, presentation, datasets, report, and docs to GitHub Pages" },
+    "pages_index": { "path": "pages/index.html", "note": "Root landing page for GitHub Pages" }
+  },
   "verification_summary": {
     "note": "Headline figures verified via web search on 2026-08-23 against primary sources: BEA (2025 GDP +2.1%), BLS (unemployment 4.1% Jul 2026), Census (median household income 2024 $83,730), CBO (debt ~100% of GDP FY2025, 120% by 2036; OBBBA +$3.4T), Treasury (FY2025 deficit $1.8T; net interest $970B), Fed DFA (top 1% ~30.5% Q1 2024), CDC (life expectancy 79.0 in 2024), CMS (healthcare 18.0% of GDP 2024), FBI (2024 murder -14.9%, violent crime -4.5%), Freedom House (US 81 in 2026 report), V-Dem (0.57 in 2025), EIU (7.65 in 2025), Shiller CAPE (~41, Aug 2026). Other series carry MEDIUM/LOW confidence flags and are reproduced from standard primary series with sources listed."
   },

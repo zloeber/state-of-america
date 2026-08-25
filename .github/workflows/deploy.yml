@@ -1,0 +1,69 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# allow only one concurrent deployment, skipping queued ones
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+# deploy to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p public
+
+          # Root landing page
+          cp pages/index.html public/index.html
+
+          # Interactive explorer
+          cp explorer/index.html public/explorer.html
+
+          # Presentation
+          cp presentation/index.html public/presentation.html
+
+          # JSON datasets
+          mkdir -p public/data/normalized public/data/derived
+          cp data/normalized/*.json public/data/normalized/
+          cp data/derived/*.json public/data/derived/
+          cp claims/claim_registry.json public/data/
+          cp sources/source_registry.json public/data/
+          cp research_manifest.json public/data/
+
+          # Report
+          mkdir -p public/report
+          cp report/THE_STATE_OF_AMERICA.md public/report/
+
+          # Docs
+          cp AGENTS.md public/
+          cp README.md public/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

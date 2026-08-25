@@ -234,7 +234,34 @@ are acceptable. Any content line diff means the embedding is stale.
 
 ---
 
-## 9. Extension directions the project is explicitly ready for
+## 9. Deployment (GitHub Pages)
+
+`.github/workflows/deploy.yml` deploys to GitHub Pages on `main` pushes and
+manual workflow dispatch. It builds a `public/` artifact containing:
+
+- `index.html` — root landing page with links to the explorer, presentation,
+  report download, and claim registry
+- `explorer.html` — the interactive explorer (self-contained)
+- `presentation.html` — the slide deck (self-contained)
+- `data/` — all normalized and derived JSON datasets
+- `report/` — the markdown report
+- `AGENTS.md`, `README.md`
+
+**To enable:** in the GitHub repo go to Settings → Pages → Source and select
+"GitHub Actions". The workflow uses the standard `upload-pages-artifact` +
+`deploy-pages` actions with concurrency control.
+
+**The workflow does not build anything** — it only copies pre-existing static
+files. This is intentional: the explorer and presentation are already
+self-contained HTML files that need no build step.
+
+**If you add new files to deploy**, add a `cp` line to the `Prepare Pages
+artifact` step and update `pages/index.html` (the root landing page) if
+applicable. The landing page source is at `pages/index.html`.
+
+---
+
+## 10. Extension directions the project is explicitly ready for
 
 - **Fresh econometrics.** The report deliberately declined to run regressions /
   diff-in-diff (Part 12.3 flags this as a limitation). Running the party-effect
@@ -250,7 +277,7 @@ are acceptable. Any content line diff means the embedding is stale.
 
 ---
 
-## 10. What NOT to do
+## 11. What NOT to do
 
 - Do **not** renumber existing claim/source/admin IDs.
 - Do **not** silently overwrite prompts — `prompts/000_root_prompt.md` is the

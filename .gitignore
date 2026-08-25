@@ -1,0 +1,46 @@
+# Python-generated files
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+venv
+
+.env
+__pycache__
+.ruff*
+.DS_Store
+unit_test_results.txt
+.pytest_cache
+.mypy_cache
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+
+secret_results.json
+# Metagit workspace
+.metagit/
+.atlas/index/
+.worktrees/
+src/metagit/_version.py
+site
+
+# Crush contextual files
+.crush
+
+graphify-*
+
+# go-task cache
+.task/
+
+# Local superpowers drafts; track shipped RFC series + approved design/plans for MR continuity
+docs/superpowers/*
+!docs/superpowers/specs/
+!docs/superpowers/plans/
+docs/changelog.md
+web/node_modules
+.gitnexus
+secret_results.json
