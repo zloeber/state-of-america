@@ -69,3 +69,4 @@ UNKNOWN where not determinable (never fabricated — root Section 23).
 - The composite index (Part 13) is an analytical lens with disclosed weights,
   not a measure of national worth.
 - Party comparisons are descriptive, not causal (see `analysis/causal_analysis.md`).
+
