@@ -98,6 +98,30 @@
   #lineage3d-info .prompt-text{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:8px 10px;margin-top:4px;font-size:11.5px;color:var(--dim);cursor:pointer;max-height:80px;overflow:hidden;transition:max-height 0.3s}
   #lineage3d-info .prompt-text.expanded{max-height:600px;overflow-y:auto}
   #lineage3d-info code{background:var(--panel2);border:1px solid var(--line);padding:1px 5px;border-radius:3px;font-size:11px}
+  
+  /* Prompt Tree Styles */
+  .prompt-tree-node{margin:0;padding:10px 14px;border-left:3px solid var(--line);cursor:pointer;transition:background 0.15s}
+  .prompt-tree-node:hover{background:var(--panel2)}
+  .prompt-tree-node.user-prompt{border-left-color:#FFD54F;background:rgba(255,213,79,.06)}
+  .prompt-tree-node.user-prompt:hover{background:rgba(255,213,79,.12)}
+  .prompt-tree-node .node-header{display:flex;align-items:center;gap:8px}
+  .prompt-tree-node .node-icon{font-size:16px;width:22px;text-align:center}
+  .prompt-tree-node .node-title{font-weight:600;font-size:13.5px}
+  .prompt-tree-node .node-badge{font-size:10px;padding:1px 7px;border-radius:8px;font-weight:600}
+  .prompt-tree-node .node-badge.user{background:#40351f;color:#FFD54F}
+  .prompt-tree-node .node-badge.system{background:#1d2f44;color:#7fb4e8}
+  .prompt-tree-node .node-summary{font-size:12px;color:var(--dim);margin-top:4px}
+  .prompt-tree-node .node-children{margin-left:22px;border-left:2px solid var(--line)}
+  .prompt-tree-node .node-expand{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+  .prompt-tree-node .node-expand.open{max-height:8000px}
+  .prompt-tree-node .node-expand-inner{padding:10px 14px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;margin-top:8px;font-size:12.5px;line-height:1.6;white-space:pre-wrap;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+  .prompt-tree-node .node-expand-inner h1,.prompt-tree-node .node-expand-inner h2,.prompt-tree-node .node-expand-inner h3,.prompt-tree-node .node-expand-inner h4{font-family:Georgia,'Times New Roman',serif;margin:14px 0 6px}
+  .prompt-tree-node .node-expand-inner h1{font-size:18px}
+  .prompt-tree-node .node-expand-inner h2{font-size:15px;border-bottom:1px solid var(--line);padding-bottom:4px}
+  .prompt-tree-node .node-expand-inner h3{font-size:13.5px}
+  .prompt-tree-node .node-expand-inner code{background:var(--panel);border:1px solid var(--line);padding:1px 5px;border-radius:3px;font-size:11.5px}
+  .prompt-tree-node .node-expand-inner pre{background:var(--panel);border:1px solid var(--line);padding:8px 10px;border-radius:4px;overflow-x:auto;font-size:11.5px}
+  .prompt-tree-node .click-hint{font-size:10px;color:var(--dim);text-align:right;margin-top:3px}
 </style>
 </head>
 <body>
@@ -279,6 +303,14 @@
           <button onclick="resetViewLineage3D()" title="Reset camera">↺ Reset</button>
         </div>
       </div>
+    </div>
+    
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="padding:12px 16px;background:var(--panel);border-bottom:1px solid var(--line)">
+        <h3 style="margin:0">Prompt Lineage Tree</h3>
+        <p class="muted" style="font-size:12px;margin:4px 0 0">User-entered prompts are highlighted as starting points. Click any node to expand its full prompt content.</p>
+      </div>
+      <div id="promptTree" style="padding:16px"></div>
     </div>
     
     <div class="card">
@@ -1572,6 +1604,81 @@ function renderLineage(){
   ];
   $('promptChain').innerHTML=promptRoles.map(p=>`<div style="display:flex;gap:12px;margin:6px 0;padding:10px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;font-size:13px"><div style="min-width:80px"><span class="pill" style="background:#2a2f3a;color:var(--accent)">v${p.v}</span></div><div><b>${esc(p.role)}</b><div class="muted" style="margin-top:2px">${esc(p.desc)}</div></div></div>`).join('');
   $('execGraph').textContent=JSON.stringify(EXECGRAPH,null,2);
+  renderPromptTree();
+}
+
+/* ---------- Prompt Tree ---------- */
+function renderPromptTree(){
+  var container=$('promptTree');
+  if(!container)return;
+  function miniMd(md){
+    if(!md)return'';
+    return md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+      .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+      .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+      .replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>')
+      .replace(/\*([^*]+)\*/g,'<i>$1</i>')
+      .replace(/`([^`]+)`/g,'<code>$1</code>')
+      .replace(/```([\s\S]*?)```/g,'<pre>$1</pre>')
+      .replace(/^- (.+)$/gm,'• $1')
+      .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
+      .replace(/\n\n/g,'<br><br>')
+      .replace(/\n/g,'<br>');
+  }
+  var uid=0;
+  function makeNode(icon,title,badge,badgeClass,summary,content,isUser,children){
+    var nodeId='pt-'+(uid++);
+    var expandId=nodeId+'-expand';
+    var userClass=isUser?' user-prompt':'';
+    var childHtml=(children||[]).map(function(c){return c.html}).join('');
+    var clickHint=content?'<div class="click-hint">▸ click to expand full prompt</div>':'';
+    var expandPanel=content?'<div class="node-expand" id="'+expandId+'"><div class="node-expand-inner">'+miniMd(content)+'</div></div>':'';
+    var html='<div class="prompt-tree-node'+userClass+'" onclick="togglePromptTreeNode(\''+expandId+'\',this)">'
+      +'<div class="node-header">'
+      +'<span class="node-icon">'+icon+'</span>'
+      +'<span class="node-title">'+esc(title)+'</span>'
+      +'<span class="node-badge '+badgeClass+'">'+esc(badge)+'</span>'
+      +'</div>'
+      +(summary?'<div class="node-summary">'+esc(summary)+'</div>':'')
+      +clickHint+expandPanel
+      +(childHtml?'<div class="node-children">'+childHtml+'</div>':'')
+      +'</div>';
+    return{html:html};
+  }
+  var tree=makeNode('\u2605','Root Prompt (User-Entered)','USER','user',
+    'The verbatim original request. Everything traces back to this.',
+    PROMPTS['000']&&PROMPTS['000'].content,true,[
+    makeNode('\u21c4','Research Decomposition','SYSTEM','system',
+      'Breaks the root question into domain-specific sub-questions.',
+      PROMPTS['001']&&PROMPTS['001'].content,false,[
+      makeNode('\u2696','Economics','DOMAIN','system','GDP, growth, employment, inflation.',null,false,[]),
+      makeNode('\u2696','Wealth Distribution','DOMAIN','system','Inequality, middle class, capital ownership.',null,false,[]),
+      makeNode('\u2696','Fiscal Health','DOMAIN','system','Debt, deficit, federal revenue.',null,false,[]),
+      makeNode('\u2696','Population Health','DOMAIN','system','Life expectancy, mortality, healthcare.',null,false,[]),
+      makeNode('\u2696','Freedom & Democracy','DOMAIN','system','Rights, civil liberties, institutional health.',null,false,[]),
+      makeNode('\u2696','Financial Crises','DOMAIN','system','Bubbles, crashes, systemic risk.',null,false,[]),
+      makeNode('\u2696','Social Stability','DOMAIN','system','Crime, poverty, mobility, trust.',null,false,[]),
+      makeNode('\u2696','Political History','DOMAIN','system','Administrations, parties, polarization.',null,false,[])
+    ]),
+    makeNode('\u{1f916}','Domain Agent Prompts','SYSTEM','system',
+      'Detailed prompts sent to each domain agent for parallel investigation.',
+      PROMPTS['002']&&PROMPTS['002'].content,false,[]),
+    makeNode('\u{1f50d}','Verification & Red Team','SYSTEM','system',
+      'Falsification prompts designed to challenge every major conclusion.',
+      PROMPTS['003']&&PROMPTS['003'].content,false,[]),
+    makeNode('\u{1f4ca}','Synthesis & Publication','SYSTEM','system',
+      'Final integration — merges domain findings into report, presentation, and explorer.',
+      PROMPTS['004']&&PROMPTS['004'].content,false,[])
+  ]);
+  container.innerHTML=tree.html;
+}
+function togglePromptTreeNode(expandId,nodeEl){
+  var el=document.getElementById(expandId);
+  if(!el)return;
+  el.classList.toggle('open');
+  var hint=nodeEl.querySelector('.click-hint');
+  if(hint)hint.textContent=el.classList.contains('open')?'\u25be click to collapse':'\u25b8 click to expand full prompt';
 }
 
 /* ---------- Report (embedded markdown renderer) ---------- */
