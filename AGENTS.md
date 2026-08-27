@@ -41,6 +41,38 @@ datasets AND the entire report. Editing a canonical file (JSON in `data/`,
 `claims/`, `sources/`) without updating the matching embedded copy in the explorer
 silently desyncs the explorer. **Any data change touches at least two files.**
 
+### Rule 3 — Prompt Provenance (root Section 47)
+**Every prompt provided or generated during research must be preserved and traceable.**
+This includes:
+- Root prompts (user-provided)
+- Research decomposition prompts
+- Domain agent prompts
+- Verification and red-team prompts
+- Synthesis and publication prompts
+- Any ad-hoc prompts generated during the session
+
+**Prompt storage requirements:**
+1. All prompts are stored in `prompts/` directory with sequential numbering
+2. Each prompt file includes: prompt text, timestamp, source (user/agent), and purpose
+3. The `research_manifest.json` tracks all prompt versions and their roles
+4. The explorer's LINEAGE tab displays the complete prompt chain
+5. **No prompt may be silently overwritten** — append new versions, keep old ones
+
+**Anti-bias mechanism:**
+The prompt provenance system exists to root out bias in the research and researcher.
+By preserving all prompts, we can:
+- Trace how initial questions shaped findings
+- Identify where agent-generated prompts may have introduced bias
+- Verify that red-team prompts genuinely challenged conclusions
+- Ensure that synthesis prompts did not manufacture balance
+
+**Prompt injection protocol:**
+When a new prompt is provided or generated during a session:
+1. Save it to `prompts/` with next sequential number
+2. Update `research_manifest.json` prompts array
+3. Add entry to the explorer's LINEAGE section
+4. Include in the execution graph if it changes the research flow
+
 ---
 
 ## 3. Directory map
@@ -282,6 +314,8 @@ applicable. The landing page source is at `pages/index.html`.
 - Do **not** renumber existing claim/source/admin IDs.
 - Do **not** silently overwrite prompts — `prompts/000_root_prompt.md` is the
   preserved root; lineage is versioned (append new prompt files, keep old ones).
+- Do **not** delete or modify prompt history — this violates prompt provenance (§2, Rule 3).
+- Do **not** add claims without tracing them through the lineage chain (§2, Rule 1).
 - Do **not** manufacture balance or partisan conclusions to please either side.
 - Do **not** treat the explorer's embedded data as the canonical source — the
   JSON files under `data/`, `claims/`, `sources/` are canonical.

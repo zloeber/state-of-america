@@ -57,6 +57,25 @@
   "verification_summary": {
     "note": "Headline figures verified via web search on 2026-08-23 against primary sources: BEA (2025 GDP +2.1%), BLS (unemployment 4.1% Jul 2026), Census (median household income 2024 $83,730), CBO (debt ~100% of GDP FY2025, 120% by 2036; OBBBA +$3.4T), Treasury (FY2025 deficit $1.8T; net interest $970B), Fed DFA (top 1% ~30.5% Q1 2024), CDC (life expectancy 79.0 in 2024), CMS (healthcare 18.0% of GDP 2024), FBI (2024 murder -14.9%, violent crime -4.5%), Freedom House (US 81 in 2026 report), V-Dem (0.57 in 2025), EIU (7.65 in 2025), Shiller CAPE (~41, Aug 2026). Other series carry MEDIUM/LOW confidence flags and are reproduced from standard primary series with sources listed."
   },
+  "prompt_provenance": {
+    "principle": "Every prompt provided or generated during research must be preserved and traceable (root Section 47, Rule 3).",
+    "storage_requirements": [
+      "All prompts stored in prompts/ directory with sequential numbering",
+      "Each prompt file includes: prompt text, timestamp, source (user/agent), and purpose",
+      "This manifest tracks all prompt versions and their roles",
+      "Explorer LINEAGE tab displays the complete prompt chain",
+      "No prompt may be silently overwritten — append new versions, keep old ones"
+    ],
+    "tracking": "Prompts array above maps each prompt to its file, version, and role in the research pipeline.",
+    "display": "Explorer LINEAGE tab shows: prompt chain, execution graph, and model lineage.",
+    "anti_bias": [
+      "Trace how initial questions shaped findings",
+      "Identify where agent-generated prompts may have introduced bias",
+      "Verify that red-team prompts genuinely challenged conclusions",
+      "Ensure that synthesis prompts did not manufacture balance"
+    ],
+    "injection_protocol": "When a new prompt is provided or generated: (1) save to prompts/ with next sequential number, (2) update this manifest, (3) add to explorer LINEAGE section, (4) include in execution graph if it changes research flow."
+  },
   "integrity": {
     "principle": "No final claim without traceable lineage to evidence; no generated artifact without lineage to prompts, models, data, and transformations (root Section 47).",
     "model_metadata": "UNKNOWN — recorded honestly, never fabricated.",
